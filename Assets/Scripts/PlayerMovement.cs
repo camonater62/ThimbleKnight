@@ -31,10 +31,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
         float speed = 5.0f;
-        rigidBody.AddForce(new Vector2(inputVector.x, 0) * speed, ForceMode2D.Force);
-        Vector2 velocity = rigidBody.velocity;
-        velocity.x = Mathf.Clamp(velocity.x, -5, 5);
-        rigidBody.velocity = velocity;
+        if (Mathf.Abs(rigidBody.velocity.x) < speed) {
+            rigidBody.AddForce(new Vector2(inputVector.x, 0) * speed, ForceMode2D.Force);
+        }
     }
 
     public void Jump(InputAction.CallbackContext context) {

@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private Rigidbody2D rigidBody;
+    private Rigidbody rigidBody;
     private PlayerInput playerInput;
 
     private PlayerInputActions playerInputActions;
 
     private void Awake() {
-        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         
         playerInputActions = new PlayerInputActions();
@@ -32,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
         float speed = 5.0f;
         if (Mathf.Abs(rigidBody.velocity.x) < speed) {
-            rigidBody.AddForce(new Vector2(inputVector.x, 0) * speed, ForceMode2D.Force);
+            rigidBody.AddForce(new Vector2(inputVector.x, 0) * speed, ForceMode.Force);
         }
     }
 
     public void Jump(InputAction.CallbackContext context) {
-        rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        rigidBody.AddForce(Vector2.up * 10, ForceMode.Impulse);
     }
 }

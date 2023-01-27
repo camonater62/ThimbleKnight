@@ -6,6 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
+    [SerializeField]
+    private float maxSpeed = 5.0f;
+
+    [SerializeField]
+    private float acceleration = 1000f;
+
     private Rigidbody2D rigidBody;
     private PlayerInput playerInput;
 
@@ -13,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
         
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
@@ -30,10 +35,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-        float speed = 5.0f;
-        if (Mathf.Abs(rigidBody.velocity.x) < speed) {
-            rigidBody.AddForce(new Vector2(inputVector.x, 0) * speed, ForceMode2D.Force);
+        float force = acceleration * Time.deltaTime;
+        if (Mathf.Abs(rigidBody.velocity.x) < maxSpeed) {
+            rigidBody.AddForce(new Vector2(inputVector.x, 0) * force, ForceMode2D.Force);
         }
+        
+
     }
 
     public void Jump(InputAction.CallbackContext context) {

@@ -13,6 +13,7 @@ public class EnemyType1: Enemy
     {
         Move();
         ChangeState();
+        Debug.Log(hp);
     }
 
 }

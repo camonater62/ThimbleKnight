@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInputAcions",
+    "name": "PlayerInputActions",
     "maps": [
         {
             "name": "Player",
@@ -18,6 +18,15 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "3192acaa-bba4-4367-941d-21ad8f12e2c7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "f9ef7614-be98-470b-9aa2-afa04ae9b9df",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -90,6 +99,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a89778c9-2b59-4137-b9dc-094b378d4a50",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

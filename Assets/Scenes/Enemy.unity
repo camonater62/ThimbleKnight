@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 828114453}
   - component: {fileID: 828114452}
   - component: {fileID: 828114455}
+  - component: {fileID: 828114456}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -371,6 +372,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &828114456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828114450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1de5075523f7a49bd47cdefeaca1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 1
 --- !u!1 &1009538522
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +560,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  damage: 1
   weapon: {fileID: 828114450}
 --- !u!1 &1244938438
 GameObject:
@@ -893,7 +906,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.07
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -972,7 +985,7 @@ GameObject:
   - component: {fileID: 1613807493}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

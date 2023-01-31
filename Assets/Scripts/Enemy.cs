@@ -32,18 +32,17 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     public void Update() {
-        Move();
+        //Move();
+        if(rigidBody.velocity.x < maxSpeed) {
+            rigidBody.velocity += new Vector2(direction * speed * Time.deltaTime, 0);
+        }
         ChangeState();
     }
     /// <summary>
     /// Moves the player around the map depending on their state
     /// </summary>
     public void Move() {
-        if (state == State.Patrol) {
-            transform.Translate(direction * speed * Time.deltaTime, 0, 0);
-        } else {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
-        }
+        rigidBody.AddForce(new Vector2(direction * speed * Time.deltaTime, 0));
 
     }
 
@@ -53,6 +52,11 @@ public abstract class Enemy : MonoBehaviour {
             state = State.Fight;
         } else if (dist < 5) {
             state = State.Chase;
+            if(player.transform.position.x < transform.position.x) {
+                direction = -1;
+            } else if(player.transform.position.x > transform.position.x) {
+                direction = 1;
+            }
         } else {
             state = State.Patrol;
         }
@@ -63,7 +67,7 @@ public abstract class Enemy : MonoBehaviour {
         if (hp <= 0) {
             this.gameObject.SetActive(false);
         } else {
-            rigidBody.AddForce(new Vector2(weapon.GetKnockback(), 0) * (-direction), ForceMode2D.Impulse);
+            rigidBody.AddForce(new Vector3(weapon.GetKnockback(), 0, 0) * (-direction), ForceMode2D.Impulse);
         }
     }
 
@@ -72,8 +76,9 @@ public abstract class Enemy : MonoBehaviour {
         p.SetHP(p.GetHP() - damage);
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "wall") {
+        if (other.tag == "Wall") {
             direction *= -1;
+            rigidBody.velocity = Vector2.zero;
         }
         if(other.tag == "Player") {
             Attack();

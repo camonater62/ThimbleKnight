@@ -35,7 +35,7 @@ public abstract class Weapon : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if(other.tag == "enemy") {
+        if(other.tag == "Enemy") {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (attacking) {
                 enemy.TakeDamage(this);

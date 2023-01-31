@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
 
+    [SerializeField]
+    private float maxSpeed = 5.0f;
+
+    [SerializeField]
+    private float acceleration = 1000f;
+
     private Rigidbody rigidBody;
     private PlayerInput playerInput;
 
@@ -28,7 +34,11 @@ public class PlayerMovement : MonoBehaviour {
     void Update() {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
         float speed = 1000f * Time.deltaTime;
+        if (Mathf.Abs(rigidBody.velocity.x) < maxSpeed) {
         rigidBody.AddForce(new Vector3(inputVector.x, 0, 0) * speed, ForceMode.Force);
+        }
+        
+
     }
 
     public void Jump(InputAction.CallbackContext context) {

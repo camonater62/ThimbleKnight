@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
 
-    [SerializeField] private float maxSpeed = 5.0f;
-
-    [SerializeField] private float acceleration = 1000f;
+    [SerializeField] private float maxSpeed = 50.0f;
+    [SerializeField] private float speed = 10.0f;
 
     private Rigidbody2D rigidBody;
 
@@ -29,12 +28,13 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-        float speed = 1000f * Time.deltaTime;
-        if (Mathf.Abs(rigidBody.velocity.x) < maxSpeed) {
-            rigidBody.AddForce(new Vector2(inputVector.x, 0) * speed, ForceMode2D.Force);
-        }
-        
 
+        bool canLeft = rigidBody.velocity.x > -maxSpeed || inputVector.x > 0;
+        bool canRight = rigidBody.velocity.x < maxSpeed || inputVector.x < 0;
+
+        if (canLeft || canRight) {
+            rigidBody.velocity += new Vector2(inputVector.x, 0) * speed * Time.deltaTime;
+        }
     }
 
     public void Jump(InputAction.CallbackContext context) {

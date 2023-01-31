@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Wall
   - enemy
+  - weapon
+  - wall
   layers:
   - Default
   - TransparentFX

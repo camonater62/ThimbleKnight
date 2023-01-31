@@ -19,6 +19,9 @@ public class PlayerCombat : MonoBehaviour {
 
     //Possible stat depending on field
     //[SerializeField] protected float attackSpd;
+
+    public virtual float GetHP() { return hp; }
+    public virtual void SetHP(float newHP) { hp = newHP; }
     // Start is called before the first frame update
     private void Awake() {
         rigidBody = GetComponent<Rigidbody>();

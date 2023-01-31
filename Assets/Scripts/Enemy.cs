@@ -19,6 +19,8 @@ public abstract class Enemy : MonoBehaviour {
     }
     [SerializeField] protected State state = State.Patrol;
     [SerializeField] protected GameObject player;
+
+    private Rigidbody rigidBody;
     public virtual float GetMaxSpd() { return maxSpeed; }
     public virtual float GetSpeed() { return speed; }
     public virtual float GetHP() { return hp; }
@@ -26,6 +28,13 @@ public abstract class Enemy : MonoBehaviour {
     public virtual void SetHP(float newHP){ hp = newHP; }
     private void Awake() {
         hp = maxHP;
+        rigidBody = GetComponent<Rigidbody>();
+    }
+
+    public void Update() {
+        Move();
+        ChangeState();
+        Debug.Log(hp);
     }
     /// <summary>
     /// Moves the player around the map depending on their state
@@ -49,9 +58,26 @@ public abstract class Enemy : MonoBehaviour {
             state = State.Patrol;
         }
     }
+
+    public void TakeDamage(Weapon weapon) {
+        hp -= weapon.GetDmg();
+        if (hp <= 0) {
+            this.gameObject.SetActive(false);
+        } else {
+            rigidBody.AddForce(new Vector3(weapon.GetKnockback(), 0, 0) * (-direction), ForceMode.Impulse);
+        }
+    }
+
+    private void Attack() {
+        PlayerCombat p = player.GetComponent<PlayerCombat>();
+        p.SetHP(p.GetHP() - damage);
+    }
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Wall") {
+        if (other.tag == "wall") {
             direction *= -1;
+        }
+        if(other.tag == "player") {
+            Attack();
         }
     }
 

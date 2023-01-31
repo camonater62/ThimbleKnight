@@ -9,11 +9,4 @@ public class EnemyType1: Enemy
         
     }
 
-    public void Update()
-    {
-        Move();
-        ChangeState();
-        Debug.Log(hp);
-    }
-
 }

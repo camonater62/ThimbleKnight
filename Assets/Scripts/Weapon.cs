@@ -5,12 +5,15 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     [Header("Stats:")]
-    [SerializeField] protected float dmg;
+    [SerializeField] protected float damage;
+    [SerializeField] protected float knockback;
 
     private Animator anim;
 
     private bool attacking = false;
 
+    public virtual float GetKnockback() { return knockback; }
+    public virtual float GetDmg() { return damage; }
     private void Awake() {
         anim = GetComponent<Animator>();
     }
@@ -35,7 +38,7 @@ public abstract class Weapon : MonoBehaviour
         if(other.tag == "enemy") {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (attacking) {
-                enemy.SetHP(enemy.GetHP() - dmg);
+                enemy.TakeDamage(this);
                 attacking = false;
             }
         }

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 100029527}
   m_Layer: 0
   m_Name: MiddleWall
-  m_TagString: Wall
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 828114456}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
+  knockback: 10
 --- !u!1 &1009538522
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +517,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1047310101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -703,7 +704,7 @@ GameObject:
   - component: {fileID: 1425408234}
   m_Layer: 0
   m_Name: LeftWall
-  m_TagString: Wall
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1024,7 +1025,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1613807491
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1377,7 +1378,7 @@ GameObject:
   - component: {fileID: 2127002708}
   m_Layer: 0
   m_Name: RightWall
-  m_TagString: Wall
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

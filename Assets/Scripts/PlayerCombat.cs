@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour {
-    private Rigidbody rigidBody;
+    private Rigidbody2D rigidBody;
     private PlayerInput playerInput;
     
     private PlayerInputActions playerInputActions;
@@ -24,7 +24,7 @@ public class PlayerCombat : MonoBehaviour {
     public virtual void SetHP(float newHP) { hp = newHP; }
     // Start is called before the first frame update
     private void Awake() {
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
 
         playerInputActions = new PlayerInputActions();
@@ -38,13 +38,12 @@ public class PlayerCombat : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(mousePos.x < transform.position.x) {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            transform.eulerAngles = new Vector2(0, 180);
         } else {
-            transform.eulerAngles = Vector3.zero;
+            transform.eulerAngles = Vector2.zero;
         }
-        Debug.Log(hp);
     }
 
     public void Attack(InputAction.CallbackContext context) {

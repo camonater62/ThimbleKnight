@@ -34,7 +34,7 @@ public abstract class Weapon : MonoBehaviour
         attacking = true;
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay2D(Collider2D other) {
         if(other.tag == "enemy") {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (attacking) {

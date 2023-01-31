@@ -34,7 +34,6 @@ public abstract class Enemy : MonoBehaviour {
     public void Update() {
         Move();
         ChangeState();
-        Debug.Log(hp);
     }
     /// <summary>
     /// Moves the player around the map depending on their state
@@ -76,7 +75,7 @@ public abstract class Enemy : MonoBehaviour {
         if (other.tag == "wall") {
             direction *= -1;
         }
-        if(other.tag == "player") {
+        if(other.tag == "Player") {
             Attack();
         }
     }

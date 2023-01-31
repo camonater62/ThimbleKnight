@@ -44,6 +44,7 @@ public class PlayerCombat : MonoBehaviour {
         } else {
             transform.eulerAngles = Vector3.zero;
         }
+        Debug.Log(hp);
     }
 
     public void Attack(InputAction.CallbackContext context) {

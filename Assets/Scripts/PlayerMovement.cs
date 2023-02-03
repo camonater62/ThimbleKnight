@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] private float maxSpeed = 50.0f;
     [SerializeField] private float speed = 10.0f;
+    private bool _grounded = true;
 
     private Rigidbody2D rigidBody;
 
@@ -38,6 +39,21 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void Jump(InputAction.CallbackContext context) {
-        rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        if (_grounded) {
+            rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            _grounded = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.collider.gameObject.tag == "Floor") {
+            _grounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) {
+        if(collision.collider.gameObject.tag == "Floor") {
+            _grounded = false;
+        }
     }
 }

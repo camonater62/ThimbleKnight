@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour {
     [SerializeField] protected GameObject player;
 
     private Rigidbody2D rigidBody;
+    private SpriteRenderer _spriteRenderer;
     public virtual float GetMaxSpd() { return maxSpeed; }
     public virtual float GetSpeed() { return speed; }
     public virtual float GetHP() { return hp; }
@@ -29,28 +30,33 @@ public abstract class Enemy : MonoBehaviour {
     private void Awake() {
         hp = maxHP;
         rigidBody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Update() {
-        //Move();
-        if(rigidBody.velocity.x < maxSpeed) {
-            rigidBody.velocity += new Vector2(direction * speed * Time.deltaTime, 0);
-        }
+        Move();
         ChangeState();
     }
     /// <summary>
     /// Moves the player around the map depending on their state
     /// </summary>
     public void Move() {
-        rigidBody.AddForce(new Vector2(direction * speed * Time.deltaTime, 0));
-
+        if (rigidBody.velocity.x < maxSpeed) {
+            rigidBody.velocity += new Vector2(direction * speed * Time.deltaTime, 0);
+        }
+        if (direction == 1) {
+            _spriteRenderer.flipX = true;    
+        } else if(direction == -1) {
+            _spriteRenderer.flipX = false;
+        }
     }
 
     public void ChangeState() {
         float dist = Vector3.Distance(transform.position, player.transform.position);
+        Debug.Log(player.transform.position);
         if (dist < 2) {
             state = State.Fight;
-        } else if (dist < 5) {
+        } else if (dist < 4) {
             state = State.Chase;
             if(player.transform.position.x < transform.position.x) {
                 direction = -1;

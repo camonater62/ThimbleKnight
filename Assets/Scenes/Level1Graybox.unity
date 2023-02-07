@@ -783,6 +783,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8066667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8066667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.287
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.789
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1044256249966024057, guid: 6564964f960367149be91c19e15c6df6, type: 3}
       propertyPath: m_Name
       value: Player

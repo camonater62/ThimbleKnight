@@ -600,6 +600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ant_02
       objectReference: {fileID: 0}
+    - target: {fileID: 9142394643696871692, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 9142394643696871693, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -785,15 +789,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.42
+      value: 10.24
       objectReference: {fileID: 0}
     - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8066667
+      value: 3.4133332
       objectReference: {fileID: 0}
     - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.8066667
+      value: 3.4133332
       objectReference: {fileID: 0}
     - target: {fileID: 1044256249855162958, guid: 6564964f960367149be91c19e15c6df6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -859,6 +863,10 @@ PrefabInstance:
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 1107270428}
+    - target: {fileID: 4328215804246465260, guid: 6564964f960367149be91c19e15c6df6, type: 3}
+      propertyPath: hp
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6564964f960367149be91c19e15c6df6, type: 3}
 --- !u!1001 &9142394643875350306
@@ -879,6 +887,10 @@ PrefabInstance:
     - target: {fileID: 9142394643696871692, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
       propertyPath: m_Name
       value: Ant_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142394643696871692, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 9142394643696871693, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
       propertyPath: m_RootOrder

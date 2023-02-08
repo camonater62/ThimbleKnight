@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Wall
   - Floor
+  - Barricade
   layers:
   - Default
   - TransparentFX

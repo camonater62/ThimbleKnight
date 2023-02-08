@@ -41,7 +41,7 @@ public abstract class Enemy : MonoBehaviour {
     /// Moves the player around the map depending on their state
     /// </summary>
     public void Move() {
-        if (rigidBody.velocity.x < maxSpeed) {
+        if (Mathf.Abs(rigidBody.velocity.x) < maxSpeed) {
             rigidBody.velocity += new Vector2(direction * speed * Time.deltaTime, 0);
         }
         if (direction == 1) {
@@ -53,10 +53,9 @@ public abstract class Enemy : MonoBehaviour {
 
     public void ChangeState() {
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        Debug.Log(player.transform.position);
         if (dist < 2) {
             state = State.Fight;
-        } else if (dist < 4) {
+        } else if (dist < 6) {
             state = State.Chase;
             if(player.transform.position.x < transform.position.x) {
                 direction = -1;
@@ -82,7 +81,7 @@ public abstract class Enemy : MonoBehaviour {
         p.SetHP(p.GetHP() - damage);
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Wall") {
+        if (other.tag == "Wall" || other.tag == "Barricade") {
             direction *= -1;
             rigidBody.velocity = Vector2.zero;
         }

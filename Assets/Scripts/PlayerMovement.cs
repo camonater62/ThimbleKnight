@@ -7,14 +7,18 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] private float maxSpeed = 50.0f;
     [SerializeField] private float speed = 10.0f;
-    private bool _grounded = true;
+    private bool _isGrounded = true;
 
     private Rigidbody2D rigidBody;
 
     private PlayerInputActions playerInputActions;
 
+    private Animator anim;
+
+
     private void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
@@ -35,25 +39,32 @@ public class PlayerMovement : MonoBehaviour {
 
         if (canLeft || canRight) {
             rigidBody.velocity += new Vector2(inputVector.x, 0) * speed * Time.deltaTime;
+            
+        }
+        if (inputVector != Vector2.zero && _isGrounded) {
+            anim.PlayInFixedTime("TK_Walk_Anim");
         }
     }
 
     public void Jump(InputAction.CallbackContext context) {
-        if (_grounded) {
+        if (_isGrounded) {
             rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-            _grounded = false;
+            _isGrounded = false;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.collider.gameObject.tag == "Floor") {
-            _grounded = true;
+        if(collision.gameObject.tag == "Floor") {
+            _isGrounded = true;
+        } 
+        if(collision.gameObject.tag == "Barricade") {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider) ;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-        if(collision.collider.gameObject.tag == "Floor") {
-            _grounded = false;
+        if(collision.gameObject.tag == "Floor") {
+            _isGrounded = false;
         }
     }
 }

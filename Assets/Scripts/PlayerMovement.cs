@@ -7,9 +7,10 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] private float maxSpeed = 50.0f;
     [SerializeField] private float speed = 10.0f;
+    [SerializeField] protected float jumpForce = 15;
     private bool _isGrounded = true;
 
-    private Rigidbody2D rigidBody;
+    private Rigidbody2D rb;
 
     private PlayerInputActions playerInputActions;
 
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     private void Awake() {
-        rigidBody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         playerInputActions = new PlayerInputActions();
@@ -34,11 +35,11 @@ public class PlayerMovement : MonoBehaviour {
     void Update() {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
 
-        bool canLeft = rigidBody.velocity.x > -maxSpeed || inputVector.x > 0;
-        bool canRight = rigidBody.velocity.x < maxSpeed || inputVector.x < 0;
+        bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
+        bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
         if (canLeft || canRight) {
-            rigidBody.velocity += new Vector2(inputVector.x, 0) * speed * Time.deltaTime;
+            rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
             
         }
         if (inputVector != Vector2.zero && _isGrounded) {
@@ -48,7 +49,8 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Jump(InputAction.CallbackContext context) {
         if (_isGrounded) {
-            rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            //rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity += Vector2.up * jumpForce;
             _isGrounded = false;
         }
     }

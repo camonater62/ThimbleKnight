@@ -990,11 +990,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4288493984438460405, guid: cf15924bea316b748a3523258a6d0627, type: 3}
       propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288493984438460405, guid: cf15924bea316b748a3523258a6d0627, type: 3}
+      propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4288493984438460406, guid: cf15924bea316b748a3523258a6d0627, type: 3}
       propertyPath: m_Distance
-      value: 11.849239
+      value: 11.691385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288493984438460407, guid: cf15924bea316b748a3523258a6d0627, type: 3}
+      propertyPath: jumpForce
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4288493984610912386, guid: cf15924bea316b748a3523258a6d0627, type: 3}
       propertyPath: m_camera

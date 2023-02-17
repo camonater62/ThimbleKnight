@@ -3,52 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour {
-
-    [SerializeField] private float maxSpeed = 50.0f;
-    [SerializeField] private float speed = 10.0f;
+public class Player : Entity {
     private bool _isGrounded = true;
-
-    private Rigidbody2D rigidBody;
-
     private PlayerInputActions playerInputActions;
-
     private Animator anim;
 
+    [Header("Items:")]
+    [SerializeField] protected GameObject weapon;
 
-    private void Awake() {
-        rigidBody = GetComponent<Rigidbody2D>();
+    protected override void Awake() {
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump;
+        playerInputActions.Player.Attack.performed += Attack;
     }
 
-    // Start is called before the first frame update
+    public void Attack(InputAction.CallbackContext context) {
+        weapon.GetComponent<Weapon>().Attack();
+    }
+
     void Start() {
-
+        // Start is called before the first frame update
+        maxSpeed = 50.0f;
+        speed = 10.0f;
     }
-    
+
     // Update is called once per frame
     void Update() {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
 
-        bool canLeft = rigidBody.velocity.x > -maxSpeed || inputVector.x > 0;
-        bool canRight = rigidBody.velocity.x < maxSpeed || inputVector.x < 0;
+        bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
+        bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
         if (canLeft || canRight) {
-            rigidBody.velocity += new Vector2(inputVector.x, 0) * speed * Time.deltaTime;
+            rb.velocity += new Vector2(inputVector.x, 0) * speed * Time.deltaTime;
             
         }
         if (inputVector != Vector2.zero && _isGrounded) {
             anim.PlayInFixedTime("TK_Walk_Anim");
         }
+
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if(mousePos.x < transform.position.x) {
+            transform.eulerAngles = new Vector2(0, 180);
+        } else {
+            transform.eulerAngles = Vector2.zero;
+        }
     }
 
     public void Jump(InputAction.CallbackContext context) {
         if (_isGrounded) {
-            rigidBody.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
             _isGrounded = false;
         }
     }
@@ -67,4 +75,6 @@ public class PlayerMovement : MonoBehaviour {
             _isGrounded = false;
         }
     }
+
+
 }

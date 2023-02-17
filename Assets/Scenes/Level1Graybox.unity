@@ -641,6 +641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e954a49018914439dfabeb22ce53f3, type: 3}
+--- !u!1 &1580160267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 133374354928581844, guid: cf15924bea316b748a3523258a6d0627, type: 3}
+  m_PrefabInstance: {fileID: 6831563008507220322}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1904021856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,6 +917,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 715740700309311611, guid: cf15924bea316b748a3523258a6d0627, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4288493984438460396, guid: cf15924bea316b748a3523258a6d0627, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -994,13 +1003,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4288493984438460406, guid: cf15924bea316b748a3523258a6d0627, type: 3}
       propertyPath: m_Distance
-      value: 11.849239
+      value: 11.691385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288493984438460407, guid: cf15924bea316b748a3523258a6d0627, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4288493984610912386, guid: cf15924bea316b748a3523258a6d0627, type: 3}
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 1107270428}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4288493984438460407, guid: cf15924bea316b748a3523258a6d0627, type: 3}
+    - {fileID: 715740700309311611, guid: cf15924bea316b748a3523258a6d0627, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cf15924bea316b748a3523258a6d0627, type: 3}
 --- !u!1 &7299592631760129676 stripped
 GameObject:
@@ -1027,6 +1042,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &7299592631760129696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299592631760129676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc72fd7d54b24a439be8642352a629d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 10
+  speed: 10
+  maxHP: 10
+  hp: 5
+  damage: 1
+  weapon: {fileID: 1580160267}
 --- !u!1001 &9142394643875350306
 PrefabInstance:
   m_ObjectHideFlags: 0

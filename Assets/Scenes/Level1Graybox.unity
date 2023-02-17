@@ -566,6 +566,77 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e954a49018914439dfabeb22ce53f3, type: 3}
+--- !u!1 &804093384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 804093387}
+  - component: {fileID: 804093386}
+  - component: {fileID: 804093385}
+  m_Layer: 0
+  m_Name: 'Player (Missing Prefab with guid: cf15924bea316b748a3523258a6d0627)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &804093385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804093384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc72fd7d54b24a439be8642352a629d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 10
+  speed: 10
+  maxHP: 10
+  hp: 5
+  damage: 1
+  weapon: {fileID: 0}
+--- !u!95 &804093386
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804093384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c524756b96a040349ba441571a3f2708, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!4 &804093387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804093384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &927973676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b30027cb68f4844fb816249db667812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7299592631760129676}
+  _player: {fileID: 804093384}
 --- !u!1001 &1154803464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1046,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 3823182744713929932, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 7299592631760129676}
+      objectReference: {fileID: 804093384}
     - target: {fileID: 3823182744713929932, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
       propertyPath: maxSpeed
       value: 2.5
@@ -1105,6 +1176,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
+--- !u!1 &2051023022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051023023}
+  m_Layer: 0
+  m_Name: Placeholder for referenced GameObject in Prefab instance (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2051023023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051023022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2112306508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1376,7 +1478,7 @@ PrefabInstance:
     - target: {fileID: 3823182744713929932, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 7299592631760129676}
+      objectReference: {fileID: 804093384}
     - target: {fileID: 3823182744713929932, guid: c577b36983a8d8d4cbe6162b684320e1, type: 3}
       propertyPath: maxSpeed
       value: 2.5

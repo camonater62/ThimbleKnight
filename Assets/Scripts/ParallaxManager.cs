@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ParallaxManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> Layers;
-    [SerializeField]
-    private GameObject player;
+    [SerializeField] private List<GameObject> m_Layers;
+    [SerializeField] private GameObject m_Player;
+    [SerializeField] private float m_ParallaxFactor = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +17,11 @@ public class ParallaxManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        const float pFactor = 5;
-
-        Vector3 offset = player.transform.position;
+        Vector3 offset = m_Player.transform.position;
         
-        for (int i = 0; i < Layers.Count; i++) {
-            Vector3 position = -offset * pFactor * i;
-            Layers[i].transform.position = position;
+        for (int i = 0; i < m_Layers.Count; i++) {
+            Vector3 position = -offset * m_ParallaxFactor * i;
+            m_Layers[i].transform.position = position;
         }
     }
 }

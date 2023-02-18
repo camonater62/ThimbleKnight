@@ -2148,6 +2148,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1434240485964285435, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434240485964285435, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: m_Distance
       value: 1.6345574
       objectReference: {fileID: 0}
@@ -2211,6 +2215,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4887871447051113219, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: _fallMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887871447051113219, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: _lowJumpMultiplier
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696135335596650453, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: hp
       value: 5
@@ -2229,11 +2245,19 @@ PrefabInstance:
       objectReference: {fileID: 570109636}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: _jumpForce
-      value: 5
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: _fallMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: _lowJumpMultiplier
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7558273180037601870, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: m_LinearDrag
@@ -2247,7 +2271,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
 --- !u!1001 &2034188647
 PrefabInstance:

@@ -5,7 +5,7 @@ using UnityEngine;
 //using DG.Tweening;
 
 public class BetterMovement : MonoBehaviour {
-    private Collision coll;
+    //private Collision coll;
     [HideInInspector]
     public Rigidbody2D rb;
     //private AnimationScript anim;
@@ -42,7 +42,7 @@ public class BetterMovement : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        coll = GetComponent<Collision>();
+        //coll = GetComponent<Collision>();
         rb = GetComponent<Rigidbody2D>();
         //anim = GetComponentInChildren<AnimationScript>();
     }
@@ -98,6 +98,7 @@ public class BetterMovement : MonoBehaviour {
         //    wallSlide = false;
 
         if (Input.GetButtonDown("Jump")) {
+            Jump(Vector2.up, false);
             //anim.SetTrigger("jump");
 
             //if (coll.onGround)

@@ -43,14 +43,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: BG 1
-    uniqueID: 724070821
+  - name: BG 3
+    uniqueID: 625968247
     locked: 0
   - name: BG 2
     uniqueID: 502703363
     locked: 0
-  - name: BG 3
-    uniqueID: 625968247
+  - name: BG 1
+    uniqueID: 724070821
     locked: 0
   - name: Default
     uniqueID: 0
@@ -60,4 +60,7 @@ TagManager:
     locked: 0
   - name: FG 2
     uniqueID: 3170552925
+    locked: 0
+  - name: FG 3
+    uniqueID: 1041249315
     locked: 0

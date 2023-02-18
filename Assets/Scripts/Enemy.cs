@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : Entity {
-    [SerializeField] protected int direction;
-    public enum State {
-        Patrol,
-        Chase,
-        Fight
-    }
-    [SerializeField] protected State state = State.Patrol;
+    [Header("Movement Variables")]
+    [SerializeField] protected int direction = 0;
+    [SerializeField] private float _distance = 10f;
+
+    [Header("Target")]
     [SerializeField] protected GameObject player;
 
     protected SpriteRenderer _spriteRenderer;
 
-    public void Update() {
-        Move();
-        ChangeState();
-    }
+    private bool _stunned = false;
+
 
     protected override void Awake() {
         hp = maxHP;
@@ -25,52 +21,47 @@ public abstract class Enemy : Entity {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public override void Move() {
-        if (Mathf.Abs(rb.velocity.x) < maxSpeed) {
-            rb.velocity += new Vector2(direction * speed * Time.deltaTime, 0);
+    public void FixedUpdate() {
+        float dist = Vector3.Distance(transform.position, player.transform.position);
+        if (dist < _distance) {
+            if (transform.position.x < player.transform.position.x) { direction = 1; } else if (transform.position.x > player.transform.position.x) { direction = -1; }
         }
-        if (direction == 1) {
-            _spriteRenderer.flipX = true;    
-        } else if(direction == -1) {
-            _spriteRenderer.flipX = false;
+        if(!_stunned) { 
+            rb.velocity = new Vector2(speed * direction, 0);
+            if (rb.velocity.x < 0) {
+                _spriteRenderer.flipX = false;
+            } else {
+                _spriteRenderer.flipX = true;
+            }
         }
+
+
     }
 
     public void TakeDamage(Weapon weapon) {
         hp -= weapon.GetDmg();
+        _stunned = true;
         if (hp <= 0) {
             this.gameObject.SetActive(false);
         } else {
-            rb.AddForce(new Vector3(weapon.GetKnockback(), 0, 0) * (-direction), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(weapon.GetKnockback(), 0) * (-direction), ForceMode2D.Impulse);
+            StartCoroutine(Stunned());
         }
     }
+
+    IEnumerator Stunned() {
+        yield return new WaitForSeconds(1);
+        _stunned= false;
+    }
+
 
     public override void Attack() {
         Player p = player.GetComponent<Player>();
         p.SetHP(p.GetHP() - damage);
     }
 
-    public void ChangeState() {
-        float dist = Vector3.Distance(transform.position, player.transform.position);
-        if (dist < 2) {
-            state = State.Fight;
-        } else if (dist < 6) {
-            state = State.Chase;
-            if(player.transform.position.x < transform.position.x) {
-                direction = -1;
-            } else if(player.transform.position.x > transform.position.x) {
-                direction = 1;
-            }
-        } else {
-            state = State.Patrol;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Wall" || other.tag == "Barricade") {
-            direction *= -1;
-            rb.velocity = Vector2.zero;
-        }
         if(other.tag == "Player") {
             Attack();
         }

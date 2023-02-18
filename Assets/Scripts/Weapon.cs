@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [Header("Stats:")]
     [SerializeField] protected float damage;
@@ -12,8 +12,8 @@ public abstract class Weapon : MonoBehaviour
 
     private bool attacking = false;
 
-    public virtual float GetKnockback() { return knockback; }
-    public virtual float GetDmg() { return damage; }
+    public float GetKnockback() { return knockback; }
+    public float GetDmg() { return damage; }
     private void Awake() {
         anim = GetComponent<Animator>();
     }

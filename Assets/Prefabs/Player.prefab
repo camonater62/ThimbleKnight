@@ -172,6 +172,7 @@ MonoBehaviour:
   maxHP: 0
   hp: 0
   damage: 0
+  _isGrounded: 1
   _jumpForce: 0
   _fallMultiplier: 2.5
   _lowJumpMultiplier: 2
@@ -230,7 +231,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 11.691385
+  m_Distance: 60.464287
   m_DampingRatio: 0.9
   m_Frequency: 1000
 --- !u!95 &4618747726710255938
@@ -349,7 +350,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5460143646478807595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1de5075523f7a49bd47cdefeaca1e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 72883822391ca0b45af539e86dfb3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1

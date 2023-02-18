@@ -1322,7 +1322,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2233,7 +2233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: speed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: damage
@@ -2262,6 +2262,18 @@ PrefabInstance:
     - target: {fileID: 7558273180037601870, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: m_LinearDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558273180037601870, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558273180037601870, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558273180037601870, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7614309909800714730, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: m_Enabled

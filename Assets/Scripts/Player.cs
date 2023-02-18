@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 public class Player : Entity {
-    private bool _isGrounded = true;
+    [SerializeField] private bool _isGrounded = true;
     private PlayerInputActions _playerInputActions;
     private Animator _anim;
     [SerializeField] private float _jumpForce = 5f;
@@ -31,8 +31,6 @@ public class Player : Entity {
 
     void Start() {
         // Start is called before the first frame update
-        maxSpeed = 50.0f;
-        speed = 10.0f;
     }
 
     // Update is called once per frame

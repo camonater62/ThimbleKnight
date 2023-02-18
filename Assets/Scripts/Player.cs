@@ -5,20 +5,22 @@ using UnityEngine.InputSystem;
 
 public class Player : Entity {
     private bool _isGrounded = true;
-    private PlayerInputActions playerInputActions;
-    private Animator anim;
+    private PlayerInputActions _playerInputActions;
+    private Animator _anim;
+    [SerializeField] private float _jumpForce;
+    
 
     [Header("Items:")]
     [SerializeField] protected GameObject weapon;
 
     protected override void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
 
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
-        playerInputActions.Player.Jump.performed += Jump;
-        playerInputActions.Player.Attack.performed += Attack;
+        _playerInputActions = new PlayerInputActions();
+        _playerInputActions.Player.Enable();
+        _playerInputActions.Player.Jump.performed += Jump;
+        _playerInputActions.Player.Attack.performed += Attack;
     }
 
     public void Attack(InputAction.CallbackContext context) {
@@ -33,17 +35,17 @@ public class Player : Entity {
 
     // Update is called once per frame
     void Update() {
-        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+        Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2>();
 
         bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
         bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
         if (canLeft || canRight) {
-            rb.velocity += new Vector2(inputVector.x, 0) * speed * Time.deltaTime;
+            rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
             
         }
         if (inputVector != Vector2.zero && _isGrounded) {
-            anim.PlayInFixedTime("TK_Walk_Anim");
+            _anim.PlayInFixedTime("TK_Walk_Anim");
         }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -56,7 +58,8 @@ public class Player : Entity {
 
     public void Jump(InputAction.CallbackContext context) {
         if (_isGrounded) {
-            rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity += Vector2.up * _jumpForce;
             _isGrounded = false;
         }
     }

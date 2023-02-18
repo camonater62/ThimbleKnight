@@ -4,24 +4,41 @@ using UnityEngine;
 
 public class ParallaxManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> m_Layers;
-    [SerializeField] private GameObject m_Player;
-    [SerializeField] private float m_ParallaxFactor = 5.0f;
+    [SerializeField] private List<GameObject> _Layers;
+    [SerializeField] private GameObject _Player;
+    [SerializeField] private float _ParallaxFactor = 5.0f;
+    [SerializeField] private float _YMultiplier = 1.0f;
+    [SerializeField] private bool _ReverseOrder = false;
+    [SerializeField] private int _CenterElement = 0;
 
-    // Start is called before the first frame update
+    private List<Vector3> _OriginalPositions = new();
+
     void Start()
     {
-        
+        for (int i = 0; i < _Layers.Count; i++) {
+            _OriginalPositions.Add(_Layers[i].transform.position);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector3 offset = m_Player.transform.position;
+        Vector3 player_pos = _Player.transform.position;
         
-        for (int i = 0; i < m_Layers.Count; i++) {
-            Vector3 position = -offset * m_ParallaxFactor * i;
-            m_Layers[i].transform.position = position;
+        for (int i = 0; i < _Layers.Count; i++) {
+            float zpos = i - _CenterElement;
+            if (_ReverseOrder) {
+                zpos = _CenterElement - i;
+            }
+            if (zpos < 0) {
+                zpos = 1 / Mathf.Abs(zpos - 1);
+            }
+            float factor = zpos * _ParallaxFactor;
+            
+            float xcomp = player_pos.x * factor;
+            float ycomp = player_pos.y * factor * _YMultiplier;
+
+            Vector3 position = _OriginalPositions[i] - new Vector3(xcomp, ycomp, 0);
+            _Layers[i].transform.position = position;
         }
     }
 }

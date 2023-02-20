@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class Player : Entity {
-    private bool _isGrounded = true;
+    [SerializeField] private bool _isGrounded = true;
     private PlayerInputActions _playerInputActions;
     private Animator _anim;
-    [SerializeField] private float _jumpForce;
-    
+    [SerializeField] private float _jumpForce = 5f;
+    [SerializeField] private float _fallMultiplier = 2.5f;
+    [SerializeField] private float _lowJumpMultiplier = 2f;
 
     [Header("Items:")]
     [SerializeField] protected GameObject weapon;
@@ -29,8 +31,6 @@ public class Player : Entity {
 
     void Start() {
         // Start is called before the first frame update
-        maxSpeed = 50.0f;
-        speed = 10.0f;
     }
 
     // Update is called once per frame
@@ -53,6 +53,12 @@ public class Player : Entity {
             transform.eulerAngles = new Vector2(0, 180);
         } else {
             transform.eulerAngles = Vector2.zero;
+        }
+        //handles the better jump
+        if (rb.velocity.y < 0) {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
+        } else if (rb.velocity.y > 0 && !_playerInputActions.Player.Jump.IsPressed()) {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 

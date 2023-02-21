@@ -66,45 +66,30 @@ public class Player : Entity
             transform.eulerAngles = Vector2.zero;
         }
         //handles the better jump
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
-        }
-        else if (rb.velocity.y > 0 && !_playerInputActions.Player.Jump.IsPressed())
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
-        }
+        // if (rb.velocity.y < 0)
+        // {
+        //     rb.velocity += Vector2.up * Physics2D.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
+        // }
+        // else if (rb.velocity.y > 0 && !_playerInputActions.Player.Jump.IsPressed())
+        // {
+        //     rb.velocity += Vector2.up * Physics2D.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
+        // }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
         if (_col.onGround)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
+            // rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.velocity += Vector2.up * _jumpForce;
             _col.onGround = false;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            _col.onGround = true;
-        }
-        if (collision.gameObject.tag == "Barricade")
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            _col.onGround = false;
-        }
-    }
+    // }
 
 
 }

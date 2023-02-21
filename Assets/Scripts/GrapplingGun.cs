@@ -48,11 +48,13 @@ public class GrapplingGun : MonoBehaviour
     [HideInInspector] public Vector2 grapplePoint;
     [HideInInspector] public Vector2 grappleDistanceVector;
 
+    private float _previousGravity = 1;
+
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-
+        _previousGravity = m_rigidbody.gravityScale;
     }
 
     private void Update()
@@ -87,7 +89,7 @@ public class GrapplingGun : MonoBehaviour
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            m_rigidbody.gravityScale = 1;
+            m_rigidbody.gravityScale = _previousGravity;
         }
         else
         {
@@ -162,6 +164,7 @@ public class GrapplingGun : MonoBehaviour
                     m_springJoint2D.enabled = true;
                     break;
                 case LaunchType.Transform_Launch:
+                    _previousGravity = m_rigidbody.gravityScale; 
                     m_rigidbody.gravityScale = 0;
                     m_rigidbody.velocity = Vector2.zero;
                     break;

@@ -3672,7 +3672,7 @@ MonoBehaviour:
   - {fileID: 64763008}
   - {fileID: 17903877}
   _Player: {fileID: 1242838365}
-  _ParallaxFactor: 0.3
+  _ParallaxFactor: 0.5
   _YMultiplier: 0.5
   _ReverseOrder: 1
   _CenterElement: 7
@@ -5235,7 +5235,7 @@ PrefabInstance:
       objectReference: {fileID: 1194302105}
     - target: {fileID: 3264968645198002299, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: maxDistnace
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3264968645198002299, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: hasMaxDistance

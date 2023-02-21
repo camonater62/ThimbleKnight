@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-public class Player : Entity {
-    [SerializeField] private bool _isGrounded = true;
+public class Player : Entity
+{
     private PlayerInputActions _playerInputActions;
     private Animator _anim;
+    private Collision _col;
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private float _fallMultiplier = 2.5f;
     [SerializeField] private float _lowJumpMultiplier = 2f;
@@ -15,9 +16,11 @@ public class Player : Entity {
     [Header("Items:")]
     [SerializeField] protected GameObject weapon;
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        _col = GetComponent<Collision>();
 
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Enable();
@@ -25,63 +28,81 @@ public class Player : Entity {
         _playerInputActions.Player.Attack.performed += Attack;
     }
 
-    public void Attack(InputAction.CallbackContext context) {
+    public void Attack(InputAction.CallbackContext context)
+    {
         weapon.GetComponent<Weapon>().Attack();
     }
 
-    void Start() {
+    void Start()
+    {
         // Start is called before the first frame update
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2>();
 
         bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
         bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
-        if (canLeft || canRight) {
+        if (canLeft || canRight)
+        {
             rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
-            
+
         }
-        if (inputVector != Vector2.zero && _isGrounded) {
+        if (inputVector != Vector2.zero && _col.onGround)
+        {
             _anim.PlayInFixedTime("TK_Walk_Anim");
         }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if(mousePos.x < transform.position.x) {
+        if (mousePos.x < transform.position.x)
+        {
             transform.eulerAngles = new Vector2(0, 180);
-        } else {
+        }
+        else
+        {
             transform.eulerAngles = Vector2.zero;
         }
         //handles the better jump
-        if (rb.velocity.y < 0) {
+        if (rb.velocity.y < 0)
+        {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
-        } else if (rb.velocity.y > 0 && !_playerInputActions.Player.Jump.IsPressed()) {
+        }
+        else if (rb.velocity.y > 0 && !_playerInputActions.Player.Jump.IsPressed())
+        {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 
-    public void Jump(InputAction.CallbackContext context) {
-        if (_isGrounded) {
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (_col.onGround)
+        {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.velocity += Vector2.up * _jumpForce;
-            _isGrounded = false;
+            _col.onGround = false;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.tag == "Floor") {
-            _isGrounded = true;
-        } 
-        if(collision.gameObject.tag == "Barricade") {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider) ;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            _col.onGround = true;
+        }
+        if (collision.gameObject.tag == "Barricade")
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision) {
-        if(collision.gameObject.tag == "Floor") {
-            _isGrounded = false;
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            _col.onGround = false;
         }
     }
 

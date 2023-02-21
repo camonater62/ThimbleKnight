@@ -1415,7 +1415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 271226922}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Legos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1825,6 +1825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lego (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1116212424584195441, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1876,6 +1880,10 @@ PrefabInstance:
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116212425099656165, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492195183d9588949a0774c14fd53e01, type: 3}
@@ -3614,6 +3622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 675544508971898365, guid: 717fe9c113e59a54fb2af9330548b07b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 675544508971898367, guid: 717fe9c113e59a54fb2af9330548b07b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3666,6 +3678,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 675544509420569449, guid: 717fe9c113e59a54fb2af9330548b07b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 717fe9c113e59a54fb2af9330548b07b, type: 3}
 --- !u!1001 &943335665
@@ -3678,6 +3694,10 @@ PrefabInstance:
     - target: {fileID: 1116212424584195441, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_Name
       value: Lego (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116212424584195441, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_RootOrder
@@ -3731,6 +3751,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1116212425099656165, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492195183d9588949a0774c14fd53e01, type: 3}
 --- !u!4 &943335666 stripped
@@ -3749,7 +3773,7 @@ GameObject:
   - component: {fileID: 953487449}
   - component: {fileID: 953487451}
   - component: {fileID: 953487450}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lego (3)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -4029,7 +4053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040570498}
   - component: {fileID: 1040570499}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LegoSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5045,7 +5069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1311861122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5198,6 +5222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lego (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1116212424584195441, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5249,6 +5277,10 @@ PrefabInstance:
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116212425099656165, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492195183d9588949a0774c14fd53e01, type: 3}
@@ -6402,7 +6434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678753268}
   - component: {fileID: 1678753269}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LegoSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7582,6 +7614,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1385998188122325887, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: leftOffset.x
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385998188122325887, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: rightOffset.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385998188122325887, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: bottomOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385998188122325887, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: bottomOffset.y
+      value: -1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385998188122325887, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1434240485964285435, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: m_Distance
       value: 1.6345574
@@ -7883,6 +7935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lego (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1116212424584195441, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -7935,6 +7991,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1116212425099656165, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492195183d9588949a0774c14fd53e01, type: 3}
 --- !u!4 &2034188648 stripped
@@ -7953,7 +8013,7 @@ GameObject:
   - component: {fileID: 2058024121}
   - component: {fileID: 2058024123}
   - component: {fileID: 2058024122}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lego (1)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -8222,6 +8282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lego
       objectReference: {fileID: 0}
+    - target: {fileID: 1116212424584195441, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8273,6 +8337,10 @@ PrefabInstance:
     - target: {fileID: 1116212424584195443, guid: 492195183d9588949a0774c14fd53e01, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116212425099656165, guid: 492195183d9588949a0774c14fd53e01, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 492195183d9588949a0774c14fd53e01, type: 3}

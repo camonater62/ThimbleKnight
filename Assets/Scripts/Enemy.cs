@@ -28,7 +28,7 @@ public abstract class Enemy : Entity
         float dist = Vector3.Distance(transform.position, player.transform.position);
         if (dist < _distance)
         {
-            direction = transform.position.x < player.transform.position.x ? -1 : 1;
+            direction = transform.position.x < player.transform.position.x ? 1 : -1;
         }
         if (!_stunned)
         {

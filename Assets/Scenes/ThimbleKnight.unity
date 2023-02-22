@@ -2340,6 +2340,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 675544509420569451, guid: 717fe9c113e59a54fb2af9330548b07b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 717fe9c113e59a54fb2af9330548b07b, type: 3}
 --- !u!1001 &943335665
@@ -3339,8 +3343,8 @@ MonoBehaviour:
   - {fileID: 64763008}
   - {fileID: 17903877}
   _Player: {fileID: 1242838365}
-  _ParallaxFactor: 0.5
-  _YMultiplier: 0.5
+  _ParallaxFactor: 0.75
+  _YMultiplier: 0.25
   _ReverseOrder: 1
   _CenterElement: 7
 --- !u!4 &1311861123
@@ -3351,7 +3355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311861121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.181001, y: 20.080177, z: -0.4496956}
+  m_LocalPosition: {x: -6.181001, y: 19.6, z: -0.4496956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -56,10 +56,16 @@ public class Player : Entity
         transform.eulerAngles = mousePos.x < transform.position.x ? new Vector2(0, 180) : Vector2.zero;
 
         if(_col.onWall && !_col.onGround) {
-            if(_col.onLeftWall) {
+            if(_playerInputActions.Player.WallGrab.IsPressed()) {
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = 0;
+            } else {
+                if (_col.onLeftWall) {
                 rb.velocity = inputVector.x == 1 ? new Vector2(0, slideSpeed) : new Vector2(inputVector.x * speed, slideSpeed);
-            } else if(_col.onRightWall) {
+                } else if (_col.onRightWall) {
                 rb.velocity = inputVector.x == -1 ? new Vector2(0, slideSpeed) : new Vector2(inputVector.x * speed, slideSpeed);
+                }
+                rb.gravityScale = 3;
             }
         }
         
@@ -75,7 +81,6 @@ public class Player : Entity
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
-
 
 
 }

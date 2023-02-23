@@ -25,6 +25,10 @@ public class ParallaxManager : MonoBehaviour
         Vector3 player_pos = _Player.transform.position;
         
         for (int i = 0; i < _Layers.Count; i++) {
+
+            
+
+
             float zpos = i - _CenterElement;
             if (_ReverseOrder) {
                 zpos = _CenterElement - i;
@@ -37,7 +41,22 @@ public class ParallaxManager : MonoBehaviour
             float xcomp = player_pos.x * factor;
             float ycomp = player_pos.y * factor * _YMultiplier;
 
+            
+
             Vector3 position = _OriginalPositions[i] - new Vector3(xcomp, ycomp, 0);
+
+            float width = _Layers[i].GetComponent<SpriteRenderer>().bounds.size.x;
+            Vector3 widthVector = new(width, 0, 0);
+            float minx = _OriginalPositions[i].x - width;
+            float maxx = _OriginalPositions[i].x + width;
+
+            while (position.x < minx) {
+                position += widthVector;
+            }
+            while (position.x > maxx) {
+                position -= widthVector;
+            }
+
             _Layers[i].transform.position = position;
         }
     }

@@ -19,7 +19,8 @@ public class Collision : MonoBehaviour
 
     [Header("Collision")]
 
-    public float collisionRadius = 0.25f;
+    public Vector2 collisionSize = new Vector2(0.25f, 0.25f);
+    [SerializeField] protected float bottomAngle, rightAngle, leftAngle;
     public Vector2 bottomOffset, rightOffset, leftOffset;
 
     // Start is called before the first frame update
@@ -31,12 +32,12 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
-            || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        onGround = Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, collisionSize, bottomAngle, groundLayer);
+        onWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, collisionSize, rightAngle, groundLayer)
+            || Physics2D.OverlapBox((Vector2)transform.position + leftOffset, collisionSize, leftAngle, groundLayer);
 
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer);
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        onRightWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, collisionSize, leftAngle, groundLayer);
+        onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, collisionSize, rightAngle, groundLayer);
 
         wallSide = onRightWall ? -1 : 1;
 
@@ -47,9 +48,8 @@ public class Collision : MonoBehaviour
         Gizmos.color = Color.red;
 
         var positions = new Vector2[] { bottomOffset, rightOffset, leftOffset };
-
-        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
+        Gizmos.DrawWireCube((Vector2)transform.position + bottomOffset, collisionSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + rightOffset, new Vector2(collisionSize.y, collisionSize.x));
+        Gizmos.DrawWireCube((Vector2)transform.position + leftOffset, new Vector2(collisionSize.y, collisionSize.x));
     }
 }

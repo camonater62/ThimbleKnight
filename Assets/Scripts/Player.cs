@@ -9,9 +9,10 @@ public class Player : Entity
     private PlayerInputActions _playerInputActions;
     private Animator _anim;
     private Collision _col;
-    [SerializeField] private float _jumpForce = 5f;
-    [SerializeField] private float _fallMultiplier = 2.5f;
-    [SerializeField] private float _lowJumpMultiplier = 2f;
+    [SerializeField] protected float jumpForce = 5f;
+    // [SerializeField] protected float fallMultiplier = 2.5f;
+    // [SerializeField] protected float _lowJumpMultiplier = 2f;
+    [SerializeField] protected float slideSpeed = -1;
 
     [Header("Items:")]
     [SerializeField] protected GameObject weapon;
@@ -57,31 +58,22 @@ public class Player : Entity
         }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePos.x < transform.position.x)
-        {
-            transform.eulerAngles = new Vector2(0, 180);
+        transform.eulerAngles = mousePos.x < transform.position.x ? new Vector2(0, 180) : Vector2.zero;
+
+        if(_col.onWall && !_col.onGround && rb.velocity.y < 0) {
+            if(_col.onLeftWall) {
+                rb.velocity = inputVector.x == 1 ? new Vector2(0, slideSpeed) : new Vector2(inputVector.x * speed, slideSpeed);
+            } else if(_col.onRightWall) {
+                rb.velocity = inputVector.x == -1 ? new Vector2(0, slideSpeed) : new Vector2(inputVector.x * speed, slideSpeed);
+            }
         }
-        else
-        {
-            transform.eulerAngles = Vector2.zero;
-        }
-        //handles the better jump
-        // if (rb.velocity.y < 0)
-        // {
-        //     rb.velocity += Vector2.up * Physics2D.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
-        // }
-        // else if (rb.velocity.y > 0 && !_playerInputActions.Player.Jump.IsPressed())
-        // {
-        //     rb.velocity += Vector2.up * Physics2D.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
-        // }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
         if (_col.onGround)
         {
-            // rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.velocity += Vector2.up * _jumpForce;
+            rb.velocity += Vector2.up * jumpForce;
             _col.onGround = false;
         }
     }

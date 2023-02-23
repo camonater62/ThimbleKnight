@@ -12,6 +12,7 @@ public abstract class Enemy : Entity
     [SerializeField] protected GameObject player;
 
     protected SpriteRenderer _spriteRenderer;
+    private Animator _anim;
 
     private bool _stunned = false;
 
@@ -21,6 +22,7 @@ public abstract class Enemy : Entity
         hp = maxHP;
         rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
     }
 
     public void Update()
@@ -32,15 +34,14 @@ public abstract class Enemy : Entity
         }
         if (!_stunned)
         {
-            rb.velocity = new Vector2(speed * direction, 0);
-            if (rb.velocity.x < 0)
-            {
-                _spriteRenderer.flipX = false;
+            if(Mathf.Abs(rb.velocity.x) > 0) {
+                _anim.PlayInFixedTime("Ant_001_Walking_001");
+            } else {
+                _anim.PlayInFixedTime("Ant_001_Idle");
             }
-            else
-            {
-                _spriteRenderer.flipX = true;
-            }
+            rb.AddForce(Vector2.right * direction * speed, ForceMode2D.Force);
+            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed, speed), 0);
+            _spriteRenderer.flipX = rb.velocity.x < 0 ? false : true;
         }
 
 

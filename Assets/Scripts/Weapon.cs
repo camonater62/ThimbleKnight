@@ -9,7 +9,6 @@ public class Weapon : MonoBehaviour
    [SerializeField] protected float knockback;
 
    private Animator anim;
-   private Animation a;
 
    private bool attacking = false;
 
@@ -29,11 +28,8 @@ public class Weapon : MonoBehaviour
    }
 
    public void Attack() {
-      if (!attacking) {
          anim.CrossFadeInFixedTime("attack", 0.1f);
          attacking = true;
-         // StartCoroutine(Attacking());
-      }
    }
 
    private void OnTriggerStay2D(Collider2D other) {
@@ -41,12 +37,8 @@ public class Weapon : MonoBehaviour
          Enemy enemy = other.gameObject.GetComponent<Enemy>();
          if (attacking) {
             enemy.TakeDamage(this);
+            attacking = false;
          }
       }
    }
-
-   // IEnumerator Attacking() {
-   //    // yield return new WaitForSeconds(anim.);
-   //    attacking = false;
-   // }
 }

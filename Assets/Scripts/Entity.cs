@@ -11,7 +11,7 @@ public abstract class Entity : MonoBehaviour {
     [SerializeField] protected float damage;
 
     protected Rigidbody2D rb;
-    //protected Animator _anim;
+    protected Animator anim;
 
     public virtual float GetMaxSpd() { return maxSpeed; }
     public virtual float GetSpeed() { return speed; }

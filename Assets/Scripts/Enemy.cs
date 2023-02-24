@@ -6,54 +6,51 @@ public abstract class Enemy : Entity
 {
     [Header("Movement Variables")]
     [SerializeField] protected int direction = 0;
-    [SerializeField] private float _distance = 10f;
+    [SerializeField] protected float distance = 10f;
 
     [Header("Target")]
     [SerializeField] protected GameObject player;
 
-    protected SpriteRenderer _spriteRenderer;
-    private Animator _anim;
+    protected SpriteRenderer spriteRenderer;
 
-    private bool _stunned = false;
+    protected bool stunned = false;
+    protected bool moving = false;
+    protected bool awake = false;
+
+    public float GetDistance() {return Vector3.Distance(transform.position, player.transform.position);}
 
 
     protected override void Awake()
     {
         hp = maxHP;
         rb = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
-    public void Update()
-    {
-        float dist = Vector3.Distance(transform.position, player.transform.position);
-        if (dist < _distance)
-        {
-            direction = transform.position.x < player.transform.position.x ? 1 : -1;
-        }
-        if (!_stunned)
-        {
-            if(Mathf.Abs(rb.velocity.x) > 0) {
-                _anim.PlayInFixedTime("Ant_001_Walking_001");
-            } else {
-                _anim.PlayInFixedTime("Ant_001_Idle");
-            }
-            rb.AddForce(Vector2.right * direction * speed, ForceMode2D.Force);
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed, speed), 0);
-            _spriteRenderer.flipX = rb.velocity.x < 0 ? false : true;
-        }
+    public override void Move() {
 
+        direction = transform.position.x < player.transform.position.x ? 1 : -1;
+        rb.AddForce(Vector2.right * direction * speed, ForceMode2D.Force);
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed, speed), 0);
+        spriteRenderer.flipX = direction == 1 ? true : false;
+    }
 
+    public void WakeUp() {
+        moving = true;
+        direction = transform.position.x < player.transform.position.x ? 1 : -1;
+        anim.SetBool("Moving", true);
+        awake = true;
     }
 
     public void TakeDamage(Weapon weapon)
     {
         hp -= weapon.GetDmg();
-        _stunned = true;
+        moving = false;
+        stunned = true;
         if (hp <= 0)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
         else
         {
@@ -65,7 +62,8 @@ public abstract class Enemy : Entity
     IEnumerator Stunned()
     {
         yield return new WaitForSeconds(1);
-        _stunned = false;
+        moving = true;
+        stunned = false;
     }
 
 

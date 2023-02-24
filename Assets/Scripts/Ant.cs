@@ -9,4 +9,14 @@ public class Ant: Enemy
         
     }
 
+    public void Update() {
+      if (GetDistance() < distance && !awake)
+      {
+         WakeUp();
+
+      }
+      if(moving) {
+         Move();
+      }
+    }
 }

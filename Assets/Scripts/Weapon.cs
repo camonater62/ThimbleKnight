@@ -7,10 +7,12 @@ public class Weapon : MonoBehaviour
    [Header("Stats:")]
    [SerializeField] protected float damage;
    [SerializeField] protected float knockback;
+   [SerializeField] private float _attackDelay = 1f;
 
    private Animator anim;
 
-   private bool attacking = false;
+   private bool _attacking = false;
+   private bool _collided = false;
 
    public float GetKnockback() { return knockback; }
    public float GetDmg() { return damage; }
@@ -24,21 +26,29 @@ public class Weapon : MonoBehaviour
 
    // Update is called once per frame
    void Update() {
-
    }
 
    public void Attack() {
+      if(!_attacking) {
          anim.CrossFadeInFixedTime("attack", 0.1f);
-         attacking = true;
+         StartCoroutine(Attacking());
+      }
    }
 
-   private void OnTriggerStay2D(Collider2D other) {
+   private void OnTriggerEnter2D(Collider2D other) {
       if (other.tag == "Enemy") {
          Enemy enemy = other.gameObject.GetComponent<Enemy>();
-         if (attacking) {
+         if (!_collided) {
             enemy.TakeDamage(this);
-            attacking = false;
+            _collided = true;
          }
       }
+   }
+
+   IEnumerator Attacking() {
+      _attacking = true;
+      yield return new WaitForSeconds(_attackDelay);
+      _attacking = false;
+      _collided = false;
    }
 }

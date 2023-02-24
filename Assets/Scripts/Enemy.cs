@@ -32,7 +32,7 @@ public abstract class Enemy : Entity
 
         direction = transform.position.x < player.transform.position.x ? 1 : -1;
         rb.AddForce(Vector2.right * direction * speed, ForceMode2D.Force);
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed, speed), 0);
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), 0);
         spriteRenderer.flipX = direction == 1 ? true : false;
     }
 

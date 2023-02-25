@@ -65,7 +65,9 @@ public class Player : Entity
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(Mathf.Abs(rb.velocity.x) > 0) {
-            transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
+            if(!stunned) {
+                transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
+            }
             direction = rb.velocity.x > 0 ? 1 : -1;
         }
     }
@@ -100,16 +102,16 @@ public class Player : Entity
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        // if(!_immune) {
-        //     if(other.tag == "Enemy") {
-        //         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        //         TakeDamage(enemy);
-        //     } else if (other.tag == "Projectile") {
-        //         Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
-        //         TakeDamage(enemy);
-        //         Destroy(other.gameObject);
-        //     }
-        // }
+        if(!_immune) {
+            if(other.tag == "MeleeEnemy") {
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                TakeDamage(enemy);
+            } else if (other.tag == "Projectile") {
+                Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
+                TakeDamage(enemy);
+                Destroy(other.gameObject);
+            }
+        }
     }
 
 }

@@ -22,15 +22,15 @@ public class Ant: Enemy
       }
     }
 
-   private void OnTriggerEnter2D(Collider2D other) {
-      if(other.tag == "Player") {
-         Player p = other.gameObject.GetComponent<Player>();
-         if(!_collided) {
-            p.TakeDamage(this);
-            _collided = true;
-         }
-      }
-   }
+   // private void OnTriggerEnter2D(Collider2D other) {
+   //    if(other.tag == "Player") {
+   //       Player p = other.gameObject.GetComponent<Player>();
+   //       if(!_collided) {
+   //          p.TakeDamage(this);
+   //          _collided = true;
+   //       }
+   //    }
+   // }
 
    IEnumerator AttackDelay() {
       yield return new WaitForSeconds(1f);

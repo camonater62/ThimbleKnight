@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7479706236818739074}
   m_Layer: 0
   m_Name: Ant
-  m_TagString: Enemy
+  m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   hp: 0
   damage: 1
   direction: 0
-  _distance: 10
+  distance: 10
   player: {fileID: 0}
 --- !u!70 &7479706236818739074
 CapsuleCollider2D:

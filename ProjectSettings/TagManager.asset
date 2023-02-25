@@ -8,8 +8,9 @@ TagManager:
   - Weapon
   - Wall
   - Floor
-  - Barricade
   - Projectile
+  - RangedEnemy
+  - MeleeEnemy
   layers:
   - Default
   - TransparentFX

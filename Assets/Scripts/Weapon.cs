@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
    }
 
    private void OnTriggerEnter2D(Collider2D other) {
-      if (other.tag == "Enemy") {
+      if (other.tag == "MeleeEnemy" || other.tag == "RangedEnemy") {
          Enemy enemy = other.gameObject.GetComponent<Enemy>();
          if (!_collided) {
             enemy.TakeDamage(this);

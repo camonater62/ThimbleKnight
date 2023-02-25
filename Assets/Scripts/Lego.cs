@@ -19,7 +19,6 @@ public class Lego : Enemy
     void Update() {
         if(GetDistance() < distance) {
             if(!_awake) {
-                anim.PlayInFixedTime("LegoEnemy1_Wake");
                 StartCoroutine(WakeUp());
             } else if(_canFire) {
                 Attack();
@@ -34,7 +33,7 @@ public class Lego : Enemy
     }
 
     IEnumerator WakeUp() {
-        anim.PlayInFixedTime("LegoEnemy1_Wake");
+        anim.SetTrigger("Wake");
         _awake = true;
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
         _canFire = true;
@@ -42,7 +41,7 @@ public class Lego : Enemy
 
     IEnumerator Fire() {
         Rigidbody2D bullet = Instantiate(_bullet, _bulletPosition.transform);
-        _muzzleFlash.GetComponent<Animator>().PlayInFixedTime("LegoEnemyBullet_Fire");
+        _muzzleFlash.GetComponent<Animator>().PlayInFixedTime("LegoEnemy_Fire");
         bullet.AddForce(new Vector2(_bulletForce * direction , 0), ForceMode2D.Impulse);
         _canFire = false;
         anim.SetBool("Reloading", true);

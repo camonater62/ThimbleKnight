@@ -14,7 +14,7 @@ public class Player : Entity
     [SerializeField] private float _knockback;
     [SerializeField] protected float jumpForce = 5f;
     [SerializeField] protected float acceleration = 10f;
-    [SerializeField] protected float drag = 10f;
+    [SerializeField] protected float drag = 0.01f;
     [SerializeField] protected float maxRunSpeed = 10;
     [Header("Items:")]
     [SerializeField] protected GameObject weapon;
@@ -56,7 +56,7 @@ public class Player : Entity
 
         }
         if (inputVector.x == 0) {
-            rb.velocity = new Vector2(rb.velocity.x / drag*Time.deltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x * drag*Time.deltaTime, rb.velocity.y);
             Debug.Log("SCREDEEEEEEE!!");
         }
         if (inputVector != Vector2.zero && _col.onGround && !stunned) {

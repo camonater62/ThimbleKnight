@@ -5,14 +5,13 @@ using UnityEngine;
 public abstract class Enemy : Entity
 {
     [Header("Movement Variables")]
-    [SerializeField] protected int direction = 0;
+
     [SerializeField] protected float distance = 10f;
 
     [Header("Target")]
     [SerializeField] protected GameObject player;
 
 
-    protected bool stunned = false;
     protected bool moving = false;
 
     public float GetDistance() {return Vector3.Distance(transform.position, player.transform.position);}
@@ -29,7 +28,7 @@ public abstract class Enemy : Entity
     public override void Move() {
 
         direction = transform.position.x < player.transform.position.x ? 1 : -1;
-        rb.AddForce(Vector2.right * direction * speed * Time.deltaTime, ForceMode2D.Force);
+        rb.AddForce(Vector2.right * direction * speed, ForceMode2D.Force);
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), 0);
         spriteRenderer.flipX = direction == 1 ? true : false;
     }
@@ -55,14 +54,15 @@ public abstract class Enemy : Entity
         yield return new WaitForSeconds(1);
         moving = true;
         stunned = false;
+        rb.velocity = Vector2.zero;
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            Attack();
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.tag == "Player")
+    //     {
+    //         Attack();
+    //     }
+    // }
 }

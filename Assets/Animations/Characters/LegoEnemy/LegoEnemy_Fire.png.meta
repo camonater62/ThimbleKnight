@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LegoEnemy_Shoot1_0
+      name: LegoEnemy_Fire_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,7 +113,7 @@ TextureImporter:
         width: 850
         height: 850
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,7 +126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LegoEnemy_Shoot1_1
+      name: LegoEnemy_Fire_1
       rect:
         serializedVersion: 2
         x: 850
@@ -134,7 +134,7 @@ TextureImporter:
         width: 850
         height: 850
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LegoEnemy_Shoot1_2
+      name: LegoEnemy_Fire_2
       rect:
         serializedVersion: 2
         x: 1700
@@ -155,7 +155,7 @@ TextureImporter:
         width: 850
         height: 850
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LegoEnemy_Shoot1_3
+      name: LegoEnemy_Fire_3
       rect:
         serializedVersion: 2
         x: 2550
@@ -176,7 +176,7 @@ TextureImporter:
         width: 850
         height: 850
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,7 +189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LegoEnemy_Shoot1_4
+      name: LegoEnemy_Fire_4
       rect:
         serializedVersion: 2
         x: 3400
@@ -197,7 +197,7 @@ TextureImporter:
         width: 850
         height: 850
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LegoEnemy_Shoot1_5
+      name: LegoEnemy_Fire_5
       rect:
         serializedVersion: 2
         x: 4250
@@ -218,7 +218,7 @@ TextureImporter:
         width: 850
         height: 850
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,7 +231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LegoEnemy_Shoot1_6
+      name: LegoEnemy_Fire_6
       rect:
         serializedVersion: 2
         x: 5100
@@ -239,7 +239,7 @@ TextureImporter:
         width: 850
         height: 850
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -262,13 +262,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LegoEnemy_Shoot1_2: -951631304
-      LegoEnemy_Shoot1_6: 464628187
-      LegoEnemy_Shoot1_1: -1976873805
-      LegoEnemy_Shoot1_4: 951285512
-      LegoEnemy_Shoot1_5: -1357819665
-      LegoEnemy_Shoot1_3: -338337949
-      LegoEnemy_Shoot1_0: -1936019921
+      LegoEnemy_Fire_6: 464628187
+      LegoEnemy_Fire_4: -1357819665
+      LegoEnemy_Fire_2: -338337949
+      LegoEnemy_Fire_1: -951631304
+      LegoEnemy_Fire_0: -1976873805
+      LegoEnemy_Fire_3: 951285512
+      LegoEnemy_Fire_5: -1357819665
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

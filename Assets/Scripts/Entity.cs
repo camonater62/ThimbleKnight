@@ -9,7 +9,9 @@ public abstract class Entity : MonoBehaviour {
     [SerializeField] protected float maxHP;
     [SerializeField] protected float hp;
     [SerializeField] protected float damage;
+   [SerializeField] protected int direction = 0;
 
+    protected bool stunned = false;
     protected Rigidbody2D rb;
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;

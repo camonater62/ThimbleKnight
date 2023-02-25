@@ -10,6 +10,8 @@ public class Player : Entity
     // private Animator _anim;
     private Collision _col;
     private SpringJoint2D _SpringJoint;
+    private bool _immune = false;
+    [SerializeField] private float _knockback;
     [SerializeField] protected float jumpForce = 5f;
 
     [Header("Items:")]
@@ -42,11 +44,11 @@ public class Player : Entity
         bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
         bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
-        if (canLeft || canRight) {
+        if ((canLeft || canRight) && !stunned) {
             rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
 
         }
-        if (inputVector != Vector2.zero && _col.onGround) {
+        if (inputVector != Vector2.zero && _col.onGround && !stunned) {
             anim.PlayInFixedTime("TK_Walk_Anim");
         }
 
@@ -63,7 +65,8 @@ public class Player : Entity
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(Mathf.Abs(rb.velocity.x) > 0) {
-            spriteRenderer.flipX = rb.velocity.x > 0 ? false : true;
+            transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
+            direction = rb.velocity.x > 0 ? 1 : -1;
         }
     }
 
@@ -78,11 +81,35 @@ public class Player : Entity
     public void TakeDamage(Enemy enemy)
     {
         hp -= enemy.GetDamage();
+        stunned = true;
+        _immune = true;
         if(hp <= 0) {
             Debug.Log("You lose");
             gameObject.SetActive(false);
+        } else {
+            rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
+            StartCoroutine(Stunned());
         }
     }
 
+    IEnumerator Stunned() {
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector2.zero;
+        stunned = false;
+        _immune = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        // if(!_immune) {
+        //     if(other.tag == "Enemy") {
+        //         Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        //         TakeDamage(enemy);
+        //     } else if (other.tag == "Projectile") {
+        //         Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
+        //         TakeDamage(enemy);
+        //         Destroy(other.gameObject);
+        //     }
+        // }
+    }
 
 }

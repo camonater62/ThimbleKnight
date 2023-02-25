@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 6942852266192765530}
   - component: {fileID: 1385998188122325887}
   - component: {fileID: 544902687050247147}
+  - component: {fileID: 5695533599929087322}
   - component: {fileID: 7558273180037601870}
   - component: {fileID: 1434240485964285435}
   - component: {fileID: 4618747726710255938}
@@ -173,10 +174,9 @@ MonoBehaviour:
   maxHP: 0
   hp: 0
   damage: 0
-  _isGrounded: 1
-  _jumpForce: 12
-  _fallMultiplier: 3
-  _lowJumpMultiplier: 8
+  direction: 0
+  _knockback: 0
+  jumpForce: 5
   weapon: {fileID: 5460143646478807595}
 --- !u!114 &1385998188122325887
 MonoBehaviour:
@@ -198,7 +198,10 @@ MonoBehaviour:
   onRightWall: 0
   onLeftWall: 0
   wallSide: 0
-  collisionRadius: 0.25
+  collisionSize: {x: 0.25, y: 0.25}
+  bottomAngle: 0
+  rightAngle: 0
+  leftAngle: 0
   bottomOffset: {x: 0, y: 0}
   rightOffset: {x: 0, y: 0}
   leftOffset: {x: 0, y: 0}
@@ -213,6 +216,22 @@ CapsuleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 7.5, y: 8.61}
+  m_Direction: 0
+--- !u!70 &5695533599929087322
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618747726710255958}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -256,7 +275,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.6345574
+  m_Distance: 11.691385
   m_DampingRatio: 0.9
   m_Frequency: 1000
 --- !u!95 &4618747726710255938
@@ -380,6 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   knockback: 10
+  _attackDelay: 1
 --- !u!95 &6397861564788083382
 Animator:
   serializedVersion: 5

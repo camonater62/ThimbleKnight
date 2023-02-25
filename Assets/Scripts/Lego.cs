@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Lego : Enemy
 {
-    [SerializeField] private GameObject _bullet;
+    [SerializeField] private Rigidbody2D _bullet;
     [SerializeField] private GameObject _bulletPosition;
+    [SerializeField] private GameObject _muzzleFlash;
     [SerializeField] private float _bulletForce = 5f;
     private bool _awake = false;
     private bool _canFire = false;
@@ -40,15 +41,17 @@ public class Lego : Enemy
     }
 
     IEnumerator Fire() {
-        GameObject bullet_obj = Instantiate(_bullet, _bulletPosition.transform);
-        bullet_obj.GetComponent<Animator>().Play("LegoEnemyBullet_Fire");
-        Rigidbody2D bullet_rb = bullet_obj.GetComponent<Rigidbody2D>();
-        bullet_rb.AddForce(new Vector2(_bulletForce * direction , 0), ForceMode2D.Impulse);
+        Rigidbody2D bullet = Instantiate(_bullet, _bulletPosition.transform);
+        _muzzleFlash.GetComponent<Animator>().PlayInFixedTime("LegoEnemyBullet_Fire");
+        bullet.AddForce(new Vector2(_bulletForce * direction , 0), ForceMode2D.Impulse);
         _canFire = false;
-        yield return new WaitForSeconds(3);
+        anim.SetBool("Reloading", true);
+        yield return new WaitForSeconds(2);
+        anim.SetBool("Reloading", false);
+        yield return new WaitForSeconds(2);
         _canFire = true;
 
         yield return new WaitForSeconds(2);
-        Destroy(bullet_obj);
+        Destroy(bullet);
     }
 }

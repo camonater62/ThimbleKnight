@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Floor
   - Barricade
+  - Projectile
   layers:
   - Default
   - TransparentFX

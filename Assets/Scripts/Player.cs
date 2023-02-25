@@ -9,6 +9,7 @@ public class Player : Entity
     private PlayerInputActions _playerInputActions;
     // private Animator _anim;
     private Collision _col;
+    private SpringJoint2D _SpringJoint;
     [SerializeField] protected float jumpForce = 5f;
 
     [Header("Items:")]
@@ -20,6 +21,7 @@ public class Player : Entity
         anim = GetComponent<Animator>();
         _col = GetComponent<Collision>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        _SpringJoint = GetComponent<SpringJoint2D>();
 
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Enable();
@@ -47,6 +49,17 @@ public class Player : Entity
         if (inputVector != Vector2.zero && _col.onGround) {
             anim.PlayInFixedTime("TK_Walk_Anim");
         }
+
+        // _SpringJoint.enabled = false;
+        // if (Input.GetKey(KeyCode.Mouse1)) {
+        //     if(transform.position.y < _SpringJoint.connectedAnchor.y
+        //     && _SpringJoint.distance > 1) {
+        //         _SpringJoint.enabled = true;
+        //     }
+        // } else {
+        //     _SpringJoint.connectedAnchor = transform.position;
+        // }
+        
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(Mathf.Abs(rb.velocity.x) > 0) {

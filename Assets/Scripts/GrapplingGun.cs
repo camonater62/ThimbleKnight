@@ -75,6 +75,10 @@ public class GrapplingGun : MonoBehaviour
                 RotateGun(mousePos, true);
             }
 
+            if (m_rigidbody.transform.position.y > m_springJoint2D.connectedAnchor.y) {
+                m_springJoint2D.enabled = false;
+            }
+ 
             if (launchToPoint && grappleRope.isGrappling)
             {
                 if (launchType == LaunchType.Transform_Launch)
@@ -95,6 +99,7 @@ public class GrapplingGun : MonoBehaviour
         {
             Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
             RotateGun(mousePos, true);
+            m_springJoint2D.connectedAnchor = m_rigidbody.transform.position;
         }
     }
 

@@ -74,7 +74,10 @@ public class Player : Entity
     {
         if (_col.onGround)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if (rb.velocity.y < 0) {                // if moving down, set downspeed to 0 for a satisfying jump
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+            }
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);        // add jump to current jump momentum
         }
     }
 

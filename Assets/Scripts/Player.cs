@@ -10,9 +10,6 @@ public class Player : Entity
     // private Animator _anim;
     private Collision _col;
     [SerializeField] protected float jumpForce = 5f;
-    // [SerializeField] protected float fallMultiplier = 2.5f;
-    // [SerializeField] protected float _lowJumpMultiplier = 2f;
-    // [SerializeField] protected float slideSpeed = -1;
 
     [Header("Items:")]
     [SerializeField] protected GameObject weapon;
@@ -22,6 +19,7 @@ public class Player : Entity
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         _col = GetComponent<Collision>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Enable();
@@ -42,18 +40,18 @@ public class Player : Entity
         bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
         bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
-        if (canLeft || canRight)
-        {
+        if (canLeft || canRight) {
             rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
 
         }
-        if (inputVector != Vector2.zero && _col.onGround)
-        {
+        if (inputVector != Vector2.zero && _col.onGround) {
             anim.PlayInFixedTime("TK_Walk_Anim");
         }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.eulerAngles = mousePos.x < transform.position.x ? new Vector2(0, 180) : Vector2.zero;
+        if(Mathf.Abs(rb.velocity.x) > 0) {
+            spriteRenderer.flipX = rb.velocity.x > 0 ? false : true;
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -61,6 +59,15 @@ public class Player : Entity
         if (_col.onGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+    }
+
+    public void TakeDamage(Enemy enemy)
+    {
+        hp -= enemy.GetDamage();
+        if(hp <= 0) {
+            Debug.Log("You lose");
+            gameObject.SetActive(false);
         }
     }
 

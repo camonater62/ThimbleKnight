@@ -10,9 +10,10 @@ public class Ant: Enemy
     }
 
     public void Update() {
-      if (GetDistance() < distance && !awake)
+      if (GetDistance() < distance)
       {
-         WakeUp();
+         moving = true;
+         anim.SetBool("Moving", true);
 
       }
       if(moving) {

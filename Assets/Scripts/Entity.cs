@@ -12,6 +12,7 @@ public abstract class Entity : MonoBehaviour {
 
     protected Rigidbody2D rb;
     protected Animator anim;
+    protected SpriteRenderer spriteRenderer;
 
     public virtual float GetMaxSpd() { return maxSpeed; }
     public virtual float GetSpeed() { return speed; }

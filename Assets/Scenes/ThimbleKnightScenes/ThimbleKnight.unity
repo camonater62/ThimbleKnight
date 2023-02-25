@@ -10538,6 +10538,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: maxHP
       value: 5
       objectReference: {fileID: 0}
@@ -10554,6 +10558,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1953038314}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: maxSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: jumpForce
       value: 18
       objectReference: {fileID: 0}
@@ -10568,6 +10576,14 @@ PrefabInstance:
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: slideSpeed
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: maxRunSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
+      propertyPath: acceleration
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6942852266192765530, guid: 553679bff48dfac4a86be0b7b83c91d6, type: 3}
       propertyPath: _fallMultiplier

@@ -13,7 +13,9 @@ public class Player : Entity
     private bool _immune = false;
     [SerializeField] private float _knockback;
     [SerializeField] protected float jumpForce = 5f;
-
+    [SerializeField] protected float acceleration = 10f;
+    [SerializeField] protected float drag = 10f;
+    [SerializeField] protected float maxRunSpeed = 10;
     [Header("Items:")]
     [SerializeField] protected GameObject weapon;
 
@@ -45,8 +47,17 @@ public class Player : Entity
         bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
         if ((canLeft || canRight) && !stunned) {
-            rb.velocity = new Vector2(inputVector.x * speed, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x + (inputVector.x * acceleration * Time.deltaTime), rb.velocity.y);
+            // Clamp velocity in x axis only
+            Vector2 horizontalVelocity = new Vector2(rb.velocity.x, 0);
+            horizontalVelocity = Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed);  // limits x-axis speed
+            rb.velocity = new Vector2(horizontalVelocity.x, rb.velocity.y);               // now y can still fall as fast as possible
+            Debug.Log("celleratin'");
 
+        }
+        if (inputVector.x == 0) {
+            rb.velocity = new Vector2(rb.velocity.x / drag*Time.deltaTime, rb.velocity.y);
+            Debug.Log("SCREDEEEEEEE!!");
         }
         if (inputVector != Vector2.zero && _col.onGround && !stunned) {
             anim.PlayInFixedTime("TK_Walk_Anim");

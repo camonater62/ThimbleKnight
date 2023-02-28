@@ -11,6 +11,8 @@ public class Player : Entity
     private Collision _col;
     private SpringJoint2D _SpringJoint;
     private bool _immune = false;
+    private bool inAir = false;
+    private bool walking = false;
     [SerializeField] private float _knockback;
     [SerializeField] protected float jumpForce = 5f;
     [SerializeField] protected float acceleration = 10f;
@@ -36,6 +38,7 @@ public class Player : Entity
     public void Attack(InputAction.CallbackContext context)
     {
         weapon.GetComponent<Weapon>().Attack();
+        anim.PlayInFixedTime("Slash");
     }
 
     // Update is called once per frame
@@ -59,8 +62,18 @@ public class Player : Entity
             rb.velocity = new Vector2(rb.velocity.x * drag*Time.deltaTime, rb.velocity.y);
             Debug.Log("SCREDEEEEEEE!!");
         }
-        if (inputVector != Vector2.zero && _col.onGround && !stunned) {
-            anim.PlayInFixedTime("TK_Walk_Anim");
+        if (_col.onGround) {
+            inAir = false;
+        }
+        else {
+            inAir = true;
+        }
+        if (inputVector != Vector2.zero && _col.onGround && !stunned && rb.velocity.x != 0) {
+            walking = true;
+            // anim.PlayInFixedTime("TK_Walk_Anim");
+        }
+        if (rb.velocity.x == 0) {
+            walking = false;
         }
 
         // _SpringJoint.enabled = false;
@@ -89,6 +102,8 @@ public class Player : Entity
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);        // add jump to current jump momentum
+            anim.PlayInFixedTime("Jump");
+            inAir = true;
         }
     }
 
@@ -97,6 +112,7 @@ public class Player : Entity
         hp -= enemy.GetDamage();
         stunned = true;
         _immune = true;
+        anim.PlayInFixedTime("Hit");
         if(hp <= 0) {
             Debug.Log("You lose");
             gameObject.SetActive(false);

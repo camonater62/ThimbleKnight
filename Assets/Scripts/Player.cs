@@ -37,7 +37,7 @@ public class Player : Entity
 
     public void Attack(InputAction.CallbackContext context)
     {
-        weapon.GetComponent<Weapon>().Attack();
+        // weapon.GetComponent<Weapon>().Attack();
         anim.PlayInFixedTime("Slash");
     }
 
@@ -63,17 +63,16 @@ public class Player : Entity
             Debug.Log("SCREDEEEEEEE!!");
         }
         if (_col.onGround) {
-            inAir = false;
+            anim.SetBool("inAir", false);
         }
         else {
-            inAir = true;
+            anim.SetBool("inAir", true);
         }
         if (inputVector != Vector2.zero && _col.onGround && !stunned && rb.velocity.x != 0) {
-            walking = true;
-            // anim.PlayInFixedTime("TK_Walk_Anim");
+            anim.SetBool("walking", true);
         }
         if (rb.velocity.x == 0) {
-            walking = false;
+            anim.SetBool("walking", false);
         }
 
         // _SpringJoint.enabled = false;
@@ -88,7 +87,7 @@ public class Player : Entity
         
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if(Mathf.Abs(rb.velocity.x) > 0) {
+        if(Mathf.Abs(rb.velocity.x) > 0 && !stunned) {
             transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
             direction = rb.velocity.x > 0 ? 1 : -1;
         }
@@ -98,12 +97,9 @@ public class Player : Entity
     {
         if (_col.onGround)
         {
-            if (rb.velocity.y < 0) {                // if moving down, set downspeed to 0 for a satisfying jump
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-            }
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);        // add jump to current jump momentum
             anim.PlayInFixedTime("Jump");
-            inAir = true;
+            anim.SetBool("inAir", true);
         }
     }
 
@@ -127,19 +123,6 @@ public class Player : Entity
         rb.velocity = Vector2.zero;
         stunned = false;
         _immune = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        // if(!_immune) {
-        //     if(other.tag == "Enemy") {
-        //         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        //         TakeDamage(enemy);
-        //     } else if (other.tag == "Projectile") {
-        //         Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
-        //         TakeDamage(enemy);
-        //         Destroy(other.gameObject);
-        //     }
-        // }
     }
 
 }

@@ -49,7 +49,8 @@ public class Player : Entity
         bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
         bool canRight = rb.velocity.x < maxSpeed || inputVector.x < 0;
 
-        if ((canLeft || canRight) && !stunned) {
+        if ((canLeft || canRight) && !stunned)
+        {
             rb.velocity = new Vector2(rb.velocity.x + (inputVector.x * acceleration * Time.deltaTime), rb.velocity.y);
             // Clamp velocity in x axis only
             Vector2 horizontalVelocity = new Vector2(rb.velocity.x, 0);
@@ -58,20 +59,25 @@ public class Player : Entity
             Debug.Log("celleratin'");
 
         }
-        if (inputVector.x == 0) {
-            rb.velocity = new Vector2(rb.velocity.x * drag*Time.deltaTime, rb.velocity.y);
+        if (inputVector.x == 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * drag * Time.deltaTime, rb.velocity.y);
             Debug.Log("SCREDEEEEEEE!!");
         }
-        if (_col.onGround) {
+        if (_col.onGround)
+        {
             anim.SetBool("inAir", false);
         }
-        else {
+        else
+        {
             anim.SetBool("inAir", true);
         }
-        if (inputVector != Vector2.zero && _col.onGround && !stunned && rb.velocity.x != 0) {
+        if (inputVector != Vector2.zero && _col.onGround && !stunned && rb.velocity.x != 0)
+        {
             anim.SetBool("walking", true);
         }
-        if (rb.velocity.x == 0) {
+        if (rb.velocity.x == 0)
+        {
             anim.SetBool("walking", false);
         }
 
@@ -84,10 +90,11 @@ public class Player : Entity
         // } else {
         //     _SpringJoint.connectedAnchor = transform.position;
         // }
-        
+
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if(Mathf.Abs(rb.velocity.x) > 0 && !stunned) {
+        if (Mathf.Abs(rb.velocity.x) > 0 && !stunned)
+        {
             transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
             direction = rb.velocity.x > 0 ? 1 : -1;
         }
@@ -109,20 +116,42 @@ public class Player : Entity
         stunned = true;
         _immune = true;
         anim.PlayInFixedTime("Hit");
-        if(hp <= 0) {
+        if (hp <= 0)
+        {
             Debug.Log("You lose");
             gameObject.SetActive(false);
-        } else {
+        }
+        else
+        {
             rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
             StartCoroutine(Stunned());
         }
     }
 
-    IEnumerator Stunned() {
+    IEnumerator Stunned()
+    {
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector2.zero;
         stunned = false;
         _immune = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!_immune)
+        {
+            if (other.tag == "MeleeEnemy")
+            {
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                TakeDamage(enemy);
+            }
+            else if (other.tag == "Projectile")
+            {
+                Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
+                TakeDamage(enemy);
+                Destroy(other.gameObject);
+            }
+        }
     }
 
 }

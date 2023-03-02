@@ -37,8 +37,8 @@ public class Player : Entity
 
     public void Attack(InputAction.CallbackContext context)
     {
-        // weapon.GetComponent<Weapon>().Attack();
         anim.PlayInFixedTime("Slash");
+        weapon.GetComponent<Weapon>().Attack();
     }
 
     // Update is called once per frame

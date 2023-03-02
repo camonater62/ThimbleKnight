@@ -14,23 +14,18 @@ public class Weapon : MonoBehaviour
    private bool _attacking = false;
    private bool _collided = false;
 
+   private BoxCollider2D _hitbox;
+
    public float GetKnockback() { return knockback; }
    public float GetDmg() { return damage; }
-   private void Awake() {
-      anim = GetComponent<Animator>();
-   }
-   // Start is called before the first frame update
-   void Start() {
 
+   public void Start() {
+      _hitbox = GetComponent<BoxCollider2D>();
+      _hitbox.enabled = false;
    }
-
-   // Update is called once per frame
-   void Update() {
-   }
-
    public void Attack() {
       if(!_attacking) {
-         anim.CrossFadeInFixedTime("attack", 0.1f);
+         _hitbox.enabled = true;
          StartCoroutine(Attacking());
       }
    }
@@ -50,5 +45,7 @@ public class Weapon : MonoBehaviour
       yield return new WaitForSeconds(_attackDelay);
       _attacking = false;
       _collided = false;
+      _hitbox.enabled = false;
+      
    }
 }

@@ -24,7 +24,7 @@ public class Player : Entity
     protected override void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         _col = GetComponent<Collision>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _SpringJoint = GetComponent<SpringJoint2D>();

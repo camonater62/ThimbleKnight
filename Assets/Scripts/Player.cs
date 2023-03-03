@@ -56,13 +56,11 @@ public class Player : Entity
             Vector2 horizontalVelocity = new Vector2(rb.velocity.x, 0);
             horizontalVelocity = Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed);  // limits x-axis speed
             rb.velocity = new Vector2(horizontalVelocity.x, rb.velocity.y);               // now y can still fall as fast as possible
-            Debug.Log("celleratin'");
 
         }
         if (inputVector.x == 0)
         {
             rb.velocity = new Vector2(rb.velocity.x * drag * Time.deltaTime, rb.velocity.y);
-            Debug.Log("SCREDEEEEEEE!!");
         }
         if (_col.onGround)
         {
@@ -115,6 +113,7 @@ public class Player : Entity
         hp -= enemy.GetDamage();
         stunned = true;
         _immune = true;
+        anim.SetBool("stunned", true);
         anim.PlayInFixedTime("Hit");
         if (hp <= 0)
         {
@@ -130,6 +129,9 @@ public class Player : Entity
 
     IEnumerator Stunned()
     {
+        yield return new WaitForSeconds(0.1f);
+        anim.SetBool("stunned", false);
+
         yield return new WaitForSeconds(0.5f);
         rb.velocity = Vector2.zero;
         stunned = false;
@@ -149,7 +151,6 @@ public class Player : Entity
             {
                 Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
                 TakeDamage(enemy);
-                Destroy(other.gameObject);
             }
         }
     }

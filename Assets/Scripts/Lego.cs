@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lego : Enemy
 {
-    [SerializeField] private Rigidbody2D _bullet;
+    [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _bulletPosition;
     [SerializeField] private GameObject _muzzleFlash;
     [SerializeField] private float _bulletForce = 5f;
@@ -25,7 +25,7 @@ public class Lego : Enemy
                 Attack();
             }
             direction = transform.position.x < player.transform.position.x ? 1: -1;
-            spriteRenderer.flipX = transform.position.x < player.transform.position.x ? true : false;
+            transform.eulerAngles = transform.position.x < player.transform.position.x ? new Vector2(0, 180) : Vector2.zero;
         }
     }
     public override void Attack() {
@@ -41,9 +41,9 @@ public class Lego : Enemy
     }
 
     IEnumerator Fire() {
-        Rigidbody2D bullet = Instantiate(_bullet, _bulletPosition.transform);
+        GameObject bullet = Instantiate(_bullet, _bulletPosition.transform.position, gameObject.transform.rotation);
         _muzzleFlash.GetComponent<Animator>().PlayInFixedTime("LegoEnemyBullet_Fire");
-        bullet.AddForce(new Vector2(_bulletForce * direction , 0), ForceMode2D.Impulse);
+        bullet.GetComponent<Bullet>().Fire(direction);
         _canFire = false;
         anim.SetBool("Reloading", true);
         yield return new WaitForSeconds(2);

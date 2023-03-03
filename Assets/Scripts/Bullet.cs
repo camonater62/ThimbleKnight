@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] private float _bulletForce;
+    [SerializeField] private float _dmg;
+    private Rigidbody2D _rb;
+    
+    public float GetDamage() {return _dmg;}
+
+    public void Fire(int direction) {
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.AddForce(new Vector2(direction * _bulletForce, 0), ForceMode2D.Impulse);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnCollisionEnter2D(Collision2D col) {
+        Destroy(gameObject);
     }
 }

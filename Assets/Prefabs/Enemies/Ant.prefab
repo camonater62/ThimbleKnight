@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   speed: 5
-  maxHP: 3
+  maxHP: 1
   hp: 0
   damage: 1
   direction: 0

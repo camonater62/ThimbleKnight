@@ -152,42 +152,42 @@ public class GrapplingGun : MonoBehaviour
     {
         if (!_emptyGrapple) {
             m_springJoint2D.autoConfigureDistance = false;
-        if (!launchToPoint && !autoConfigureDistance)
-        {
-            m_springJoint2D.distance = targetDistance;
-            m_springJoint2D.frequency = targetFrequncy;
-        }
-        if (!launchToPoint)
-        {
-            if (autoConfigureDistance)
+            if (!launchToPoint && !autoConfigureDistance)
             {
-                m_springJoint2D.autoConfigureDistance = true;
-                m_springJoint2D.frequency = 0;
+                m_springJoint2D.distance = targetDistance;
+                m_springJoint2D.frequency = targetFrequncy;
             }
-
-            m_springJoint2D.connectedAnchor = grapplePoint;
-            m_springJoint2D.enabled = true;
-        }
-        else
-        {
-            switch (launchType)
+            if (!launchToPoint)
             {
-                case LaunchType.Physics_Launch:
-                    m_springJoint2D.connectedAnchor = grapplePoint;
+                if (autoConfigureDistance)
+                {
+                    m_springJoint2D.autoConfigureDistance = true;
+                    m_springJoint2D.frequency = 0;
+                }
 
-                    Vector2 distanceVector = firePoint.position - gunHolder.position;
-
-                    m_springJoint2D.distance = distanceVector.magnitude;
-                    m_springJoint2D.frequency = launchSpeed;
-                    m_springJoint2D.enabled = true;
-                    break;
-                case LaunchType.Transform_Launch:
-                    _previousGravity = m_rigidbody.gravityScale; 
-                    m_rigidbody.gravityScale = 0;
-                    m_rigidbody.velocity = Vector2.zero;
-                    break;
+                m_springJoint2D.connectedAnchor = grapplePoint;
+                m_springJoint2D.enabled = true;
             }
-        }
+            else
+            {
+                switch (launchType)
+                {
+                    case LaunchType.Physics_Launch:
+                        m_springJoint2D.connectedAnchor = grapplePoint;
+
+                        Vector2 distanceVector = firePoint.position - gunHolder.position;
+
+                        m_springJoint2D.distance = Mathf.Abs(distanceVector.y);
+                        m_springJoint2D.frequency = launchSpeed;
+                        m_springJoint2D.enabled = true;
+                        break;
+                    case LaunchType.Transform_Launch:
+                        _previousGravity = m_rigidbody.gravityScale; 
+                        m_rigidbody.gravityScale = 0;
+                        m_rigidbody.velocity = Vector2.zero;
+                        break;
+                }
+            }
         }
         
     }

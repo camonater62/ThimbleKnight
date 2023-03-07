@@ -14,6 +14,7 @@ public class Player : Entity
    private bool inAir = false;
    private bool walking = false;
    public bool attacking = false;
+   [SerializeField] protected List<GameObject> hearts;
    [SerializeField] private float _knockback;
    [SerializeField] protected float jumpForce = 5f;
    [SerializeField] protected float acceleration = 10f;
@@ -121,6 +122,11 @@ public class Player : Entity
    public void TakeDamage(Enemy enemy)
    {
       hp -= enemy.GetDamage();
+      GameObject heart = hearts[hearts.Count-1];
+      heart.GetComponent<Animator>().SetTrigger("loseHealth");
+      if(hp % 2 == 0) {
+         hearts.Remove(heart);
+      }
       stunned = true;
       _immune = true;
       anim.SetBool("stunned", true);
@@ -144,6 +150,7 @@ public class Player : Entity
       _immune = true;
       anim.SetBool("stunned", true);
       anim.PlayInFixedTime("Hit");
+
       if (hp <= 0)
       {
          Debug.Log("You lose");

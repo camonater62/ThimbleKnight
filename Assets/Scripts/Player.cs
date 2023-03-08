@@ -131,52 +131,43 @@ public class Player : Entity
     hp -= enemy.GetDamage();
     GameObject heart = hearts[hearts.Count - 1];
     heart.GetComponent<Animator>().SetTrigger("loseHealth");
-    if (hp % 2 == 0)
-    {
-      hearts.Remove(heart);
-    }
     stunned = true;
     _immune = true;
     anim.SetBool("stunned", true);
     anim.PlayInFixedTime("Hit");
-    if (hp <= 0)
-    {
-      Debug.Log("You lose");
-      gameObject.SetActive(false);
-    }
-    else
-    {
-      rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
-      StartCoroutine(Stunned());
-    }
+    rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
+    StartCoroutine(Stunned(hp, heart));
   }
 
   public void TakeDamage(Bullet bullet)
   {
     hp -= bullet.GetDamage();
+    GameObject heart = hearts[hearts.Count - 1];
+    heart.GetComponent<Animator>().SetTrigger("loseHealth");
     stunned = true;
     _immune = true;
     anim.SetBool("stunned", true);
     anim.PlayInFixedTime("Hit");
+    rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
+    StartCoroutine(Stunned(hp, heart));
+  }
 
+  IEnumerator Stunned(float hp, GameObject heart)
+  {
+    yield return new WaitForSeconds(0.1f);
+    anim.SetBool("stunned", false);
+    anim.ResetTrigger("loseHealth");
+    yield return new WaitForSeconds(0.5f);
+    if (hp % 2 == 0)
+    {
+      Destroy(heart);
+      hearts.Remove(heart);
+    }
     if (hp <= 0)
     {
       Debug.Log("You lose");
       gameObject.SetActive(false);
     }
-    else
-    {
-      rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
-      StartCoroutine(Stunned());
-    }
-  }
-
-  IEnumerator Stunned()
-  {
-    yield return new WaitForSeconds(0.1f);
-    anim.SetBool("stunned", false);
-
-    yield return new WaitForSeconds(0.5f);
     rb.velocity = Vector2.zero;
     stunned = false;
     _immune = false;

@@ -41,6 +41,7 @@ public class Lego : Enemy
 
     IEnumerator Fire() {
         GameObject bullet = Instantiate(_bullet, _bulletPosition.transform.position, gameObject.transform.rotation);
+        Debug.Log(bullet.transform.position);
         _muzzleFlash.GetComponent<Animator>().PlayInFixedTime("LegoEnemyBullet_Fire");
         bullet.GetComponent<Bullet>().Fire(direction);
         _canFire = false;

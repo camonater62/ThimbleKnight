@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletForce: 10
+  _dmg: 1
 --- !u!95 &7764157628629499196
 Animator:
   serializedVersion: 5

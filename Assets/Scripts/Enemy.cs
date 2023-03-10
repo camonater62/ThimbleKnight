@@ -61,12 +61,9 @@ public abstract class Enemy : Entity
       rb.velocity = Vector2.zero;
    }
 
-
-   // private void OnTriggerEnter2D(Collider2D other)
-   // {
-   //     if (other.tag == "Player")
-   //     {
-   //         Attack();
-   //     }
-   // }
+   private void OnCollisionEnter2D(Collision2D col) {
+      if(col.gameObject.tag == "RangedEnemy" || col.gameObject.tag == "MeleeEnemy") {
+         Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+      }
+   }
 }

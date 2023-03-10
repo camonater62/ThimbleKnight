@@ -156,7 +156,6 @@ public class Player : Entity
   {
     yield return new WaitForSeconds(0.1f);
     anim.SetBool("stunned", false);
-    anim.ResetTrigger("loseHealth");
     yield return new WaitForSeconds(0.5f);
     if (hp % 2 == 0)
     {
@@ -168,6 +167,7 @@ public class Player : Entity
       Debug.Log("You lose");
       gameObject.SetActive(false);
     }
+    heart.GetComponent<Animator>().ResetTrigger("loseHealth");
     rb.velocity = Vector2.zero;
     stunned = false;
     _immune = false;

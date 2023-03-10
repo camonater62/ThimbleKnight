@@ -45,7 +45,7 @@ public class Player : Entity
     _playerInputActions.Player.Jump.performed += Jump;
     _playerInputActions.Player.Attack.performed += Attack;
 
-    _attackDelay = attackAnim.length * 0.75f;
+    _attackDelay = attackAnim.length;
   }
 
   public void Attack(InputAction.CallbackContext context)
@@ -61,7 +61,7 @@ public class Player : Entity
 
   IEnumerator Attacking()
   {
-    yield return new WaitForSeconds(_attackDelay);
+    yield return new WaitForSeconds(0.5f);
     anim.SetBool("attacking", false);
     attacking = false;
   }
@@ -109,9 +109,10 @@ public class Player : Entity
 
 
     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    if (Mathf.Abs(rb.velocity.x) > 0 && !stunned)
+    if (Mathf.Abs(rb.velocity.x) > 0 && !stunned && !attacking)
     {
       transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
+      transform.GetChild(0).transform.eulerAngles = Vector2.zero;
       direction = rb.velocity.x > 0 ? 1 : -1;
     }
   }
@@ -188,6 +189,10 @@ public class Player : Entity
         TakeDamage(bullet);
       }
     }
+  }
+
+  private void OnCollisionEnter2D(Collision2D col) {
+    // if(col.gameObject.tag == "Wall")
   }
 
 }

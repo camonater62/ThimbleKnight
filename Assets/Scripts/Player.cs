@@ -83,7 +83,7 @@ public class Player : Entity
       rb.velocity = new Vector2(horizontalVelocity.x, rb.velocity.y);               // now y can still fall as fast as possible
 
     }
-    if (inputVector.x == 0)
+    if (inputVector.x == 0 && !stunned)
     {
       rb.velocity = new Vector2(rb.velocity.x * drag * Time.deltaTime, rb.velocity.y);
     }
@@ -130,38 +130,29 @@ public class Player : Entity
   public void TakeDamage(Enemy enemy)
   {
     hp -= enemy.GetDamage();
-    GameObject heart = hearts[hearts.Count - 1];
-    heart.GetComponent<Animator>().SetTrigger("loseHealth");
-    stunned = true;
-    _immune = true;
-    anim.SetBool("stunned", true);
-    anim.PlayInFixedTime("Hit");
-    rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
-    StartCoroutine(Stunned(hp, heart));
+    StartCoroutine(Stunned());
   }
 
   public void TakeDamage(Bullet bullet)
   {
     hp -= bullet.GetDamage();
+    StartCoroutine(Stunned());
+  }
+
+  IEnumerator Stunned()
+  {
     GameObject heart = hearts[hearts.Count - 1];
     heart.GetComponent<Animator>().SetTrigger("loseHealth");
     stunned = true;
     _immune = true;
     anim.SetBool("stunned", true);
-    anim.PlayInFixedTime("Hit");
-    rb.AddForce(new Vector2(direction * _knockback, 0), ForceMode2D.Impulse);
-    StartCoroutine(Stunned(hp, heart));
-  }
-
-  IEnumerator Stunned(float hp, GameObject heart)
-  {
-    yield return new WaitForSeconds(0.1f);
+    rb.velocity = new Vector2(direction * _knockback * drag, 0);
+    yield return new WaitForSeconds(1f);
     anim.SetBool("stunned", false);
-    yield return new WaitForSeconds(0.5f);
     if (hp % 2 == 0)
     {
-      Destroy(heart);
       hearts.Remove(heart);
+      Destroy(heart);
     }
     if (hp <= 0)
     {
@@ -172,6 +163,7 @@ public class Player : Entity
     rb.velocity = Vector2.zero;
     stunned = false;
     _immune = false;
+
   }
 
   private void OnTriggerEnter2D(Collider2D other)

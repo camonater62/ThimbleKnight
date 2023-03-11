@@ -11,7 +11,7 @@ public class Ant: Enemy
     }
 
     public void Update() {
-      if (GetDistance() < distance)
+      if (GetDistance() < distance && !attacked && !stunned)
       {
          moving = true;
          anim.SetBool("Moving", true);
@@ -22,18 +22,21 @@ public class Ant: Enemy
       }
     }
 
-   // private void OnTriggerEnter2D(Collider2D other) {
-   //    if(other.tag == "Player") {
-   //       Player p = other.gameObject.GetComponent<Player>();
+   // private void OnCollisionEnter2D(Collision2D col) {
+   //    if(col.gameObject.tag == "Player") {
+   //       // Player p = other.gameObject.GetComponent<Player>();
    //       if(!_collided) {
-   //          p.TakeDamage(this);
+   //          // p.TakeDamage(this);
    //          _collided = true;
+   //          AttackDelay();
    //       }
    //    }
    // }
 
    IEnumerator AttackDelay() {
-      yield return new WaitForSeconds(1f);
+      moving = false;
+      yield return new WaitForSeconds(10f);
       _collided = false;
+      moving = true;
    }
 }

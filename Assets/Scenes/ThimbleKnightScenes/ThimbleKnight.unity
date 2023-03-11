@@ -537,6 +537,10 @@ PrefabInstance:
       value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+      propertyPath: _knockback
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: attackAnim
       value: 
       objectReference: {fileID: 7400000, guid: d52b83fd88b504319856222e9d331e24, type: 2}
@@ -2778,9 +2782,12 @@ GameObject:
   - component: {fileID: 531015810}
   - component: {fileID: 531015809}
   - component: {fileID: 531015808}
+  - component: {fileID: 531015813}
+  - component: {fileID: 531015812}
+  - component: {fileID: 531015811}
   m_Layer: 0
-  m_Name: Ant_001_Walking_001
-  m_TagString: Untagged
+  m_Name: Ant
+  m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2795,7 +2802,7 @@ Animator:
   m_GameObject: {fileID: 531015807}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d65e20f7dbb1ee2428eae38cdd101c6d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2865,13 +2872,70 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531015807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.042662, y: 4.0254436, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 70.03, y: 11.94, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &531015811
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531015807}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.21, y: -0.14}
+  m_Size: {x: 6.82, y: 3.5}
+  m_Direction: 1
+--- !u!50 &531015812
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531015807}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 3
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &531015813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531015807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35a083f53bc69d4d9b6b59c80553159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 5
+  speed: 10
+  maxHP: 2
+  hp: 0
+  damage: 1
+  direction: 0
+  distance: 10
+  player: {fileID: 730464650}
 --- !u!1 &541406193
 GameObject:
   m_ObjectHideFlags: 0
@@ -9528,7 +9592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3900095079076803079, guid: 7843295bf0580fe4c8c3b1d21e2354b1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3900095079076803079, guid: 7843295bf0580fe4c8c3b1d21e2354b1, type: 3}
       propertyPath: m_TagString

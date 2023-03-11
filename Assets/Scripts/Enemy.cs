@@ -13,8 +13,11 @@ public abstract class Enemy : Entity
 
 
    protected bool moving = false;
+   protected bool attacked = false;
 
    public float GetDistance() { return Vector3.Distance(transform.position, player.transform.position); }
+   public float GetDirection() {return direction; }
+
 
 
    protected override void Awake()
@@ -31,13 +34,12 @@ public abstract class Enemy : Entity
       direction = transform.position.x < player.transform.position.x ? 1 : -1;
       rb.AddForce(Vector2.right * direction * speed, ForceMode2D.Force);
       rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), 0);
-      spriteRenderer.flipX = direction == 1 ? true : false;
+      transform.eulerAngles = direction == 1 ? new Vector2(0, 180) : Vector2.zero;
    }
 
    public void TakeDamage(Weapon weapon)
    {
       hp -= weapon.GetDmg();
-      Debug.Log("taking damage");
       moving = false;
       stunned = true;
       if (hp <= 0)
@@ -52,18 +54,30 @@ public abstract class Enemy : Entity
 
    IEnumerator Stunned(Weapon weapon)
    {
-      yield return new WaitForSeconds(0.5f);
+      // yield return new WaitForSeconds(0.5f);
       rb.AddForce(new Vector2(weapon.GetKnockback(), 0) * (-direction), ForceMode2D.Impulse);
       yield return new WaitForSeconds(1);
-
       moving = true;
       stunned = false;
       rb.velocity = Vector2.zero;
    }
 
+   IEnumerator Attacked() {
+      Debug.Log("Attacked");
+      moving = false;
+      attacked = true;
+      rb.velocity = Vector2.zero;
+      yield return new WaitForSeconds(1f);
+      attacked = false;
+      moving = true;
+   }
+
    private void OnCollisionEnter2D(Collision2D col) {
       if(col.gameObject.tag == "RangedEnemy" || col.gameObject.tag == "MeleeEnemy") {
          Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+      } 
+      if(col.gameObject.tag == "Player") {
+         StartCoroutine(Attacked());
       }
    }
 }

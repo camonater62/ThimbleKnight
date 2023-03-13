@@ -53,6 +53,7 @@ public class Player : Entity
     if (!stunned && !attacking)
     {
       attacking = true;
+      anim.SetBool("inAir", false);
       anim.SetBool("attacking", true);
       weapon.GetComponent<Weapon>().Attack(_attackDelay);
       StartCoroutine(Attacking());
@@ -87,13 +88,16 @@ public class Player : Entity
     {
       rb.velocity = new Vector2(rb.velocity.x * drag * Time.deltaTime, rb.velocity.y);
     }
-    if (_col.onGround)
+    if (_col.onGround && !attacking)
     {
       anim.SetBool("inAir", false);
     }
     else
     {
-      anim.SetBool("inAir", true);
+      anim.ResetTrigger("Jump");
+      if(!attacking) {
+        anim.SetBool("inAir", true);
+      }
     }
     if (inputVector != Vector2.zero && _col.onGround && !stunned && rb.velocity.x != 0)
     {
@@ -107,8 +111,6 @@ public class Player : Entity
       anim.SetBool("walking", false);
     }
 
-
-    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     if (Mathf.Abs(rb.velocity.x) > 0 && !stunned && !attacking)
     {
       transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
@@ -122,8 +124,8 @@ public class Player : Entity
     if (_col.onGround)
     {
       rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);        // add jump to current jump momentum
-      anim.PlayInFixedTime("Jump");
-      anim.SetBool("inAir", true);
+      anim.SetTrigger("Jump");
+      // anim.SetBool("inAir", true);
     }
   }
 
@@ -181,10 +183,6 @@ public class Player : Entity
         TakeDamage(bullet);
       }
     }
-  }
-
-  private void OnCollisionEnter2D(Collision2D col) {
-    // if(col.gameObject.tag == "Wall")
   }
 
 }

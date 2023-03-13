@@ -62,8 +62,7 @@ public abstract class Enemy : Entity
       rb.velocity = Vector2.zero;
    }
 
-   IEnumerator Attacked() {
-      Debug.Log("Attacked");
+   protected IEnumerator Attacked() {
       moving = false;
       attacked = true;
       rb.velocity = Vector2.zero;
@@ -77,7 +76,7 @@ public abstract class Enemy : Entity
          Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
       } 
       if(col.gameObject.tag == "Player") {
-         StartCoroutine(Attacked());
+         Attack();
       }
    }
 }

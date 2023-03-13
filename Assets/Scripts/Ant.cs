@@ -22,16 +22,9 @@ public class Ant: Enemy
       }
     }
 
-   // private void OnCollisionEnter2D(Collision2D col) {
-   //    if(col.gameObject.tag == "Player") {
-   //       // Player p = other.gameObject.GetComponent<Player>();
-   //       if(!_collided) {
-   //          // p.TakeDamage(this);
-   //          _collided = true;
-   //          AttackDelay();
-   //       }
-   //    }
-   // }
+    public override void Attack() {
+        StartCoroutine(Attacked());
+    }
 
    IEnumerator AttackDelay() {
       moving = false;

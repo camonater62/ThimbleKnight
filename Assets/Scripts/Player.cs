@@ -129,10 +129,12 @@ public class Player : Entity
     }
   }
 
-  public void TakeDamage(Enemy enemy)
+  public void TakeDamage(Enemy enemy, bool stun)
   {
     hp -= enemy.GetDamage();
-    StartCoroutine(Stunned());
+    if(stun) {
+      StartCoroutine(Stunned());
+    }
   }
 
   public void TakeDamage(Bullet bullet)
@@ -175,13 +177,19 @@ public class Player : Entity
       if (other.tag == "MeleeEnemy")
       {
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        TakeDamage(enemy);
+        TakeDamage(enemy, true);
       }
       else if (other.tag == "Projectile")
       {
         Bullet bullet = other.gameObject.GetComponent<Bullet>();
         TakeDamage(bullet);
       }
+    }
+  }
+
+  private void OnCollisionEnter2D(Collision2D col) {
+    if (col.gameObject.tag == "ScaryThimble") {
+      Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
   }
 

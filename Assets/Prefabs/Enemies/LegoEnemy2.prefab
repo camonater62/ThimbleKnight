@@ -165,8 +165,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9034832158895354858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 83.22, y: 12.27237, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3185055957454254793}
@@ -293,7 +293,7 @@ MonoBehaviour:
   direction: 0
   distance: 15
   player: {fileID: 0}
-  _bullet: {fileID: 7764157628629499193, guid: 1a702cbc52ef4684ea0fe298b36e6cac, type: 3}
+  _bullet: {fileID: 7764157628629499198, guid: 1436790f5dcd90a4a88cf5774cfda47f, type: 3}
   _bulletPosition: {fileID: 8032449182600084898}
   _muzzleFlash: {fileID: 1527270108060085391}
   _bulletForce: 10

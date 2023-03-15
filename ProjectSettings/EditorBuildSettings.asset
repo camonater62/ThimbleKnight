@@ -5,16 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Level1Graybox.unity
-    guid: 82164045441ab3843aae516f0dd451e7
-  - enabled: 0
-    path: Assets/Scenes/Grapple Hook Demo.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Scenes/Parallax Demo.unity
-    guid: 07993ab192df29e4b84c2f0fda3e2f79
+  - enabled: 1
+    path: Assets/Scenes/ThimbleKnightScenes/TitleScreen.unity
+    guid: 3db23fff47b446b49a26675d038352dd
   - enabled: 1
     path: Assets/Scenes/ThimbleKnightScenes/ThimbleKnight.unity
-    guid: 164d097a9309e164eb8f5555c2234901
+    guid: 9b8634de3d5020046b86f1917ad25fa1
   m_configObjects: {}

@@ -5,16 +5,10 @@ using UnityEngine;
 public class ScaryThimble : Enemy
 {
     private bool _attached = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (GetDistance() < distance && !attacked && !stunned)
+        if (GetDistance() < distance && !_attached && !stunned)
         {
             moving = true;
             anim.SetBool("Moving", true);
@@ -28,26 +22,25 @@ public class ScaryThimble : Enemy
             transform.position = player.transform.position + new Vector3(0, 2, 0);
         }
     }
-
+    public override void TakeDamage(Weapon weapon)
+    {
+        base.TakeDamage(weapon);
+        _attached = false;
+        player.GetComponent<Player>().attached = false;
+    }
     public override void Attack()
     {
+        Debug.Log(_attached);
         if (!_attached)
         {
             _attached = true;
             moving = false;
             attacked = true;
             anim.SetBool("Moving", false);
-            // Attached();
-        }
-    }
-
-    IEnumerator Attached()
-    {
-        player.GetComponent<Player>().TakeDamage(this, false);
-        yield return new WaitForSeconds(.75f);
-        if (_attached)
-        {
-            Attached();
+            Player p = player.GetComponent<Player>();
+            p.TakeDamage(this);
+            p.attached = true;
+            // StartCoroutine(Attacked());
         }
     }
 }

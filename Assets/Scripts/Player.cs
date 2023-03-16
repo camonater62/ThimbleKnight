@@ -13,6 +13,7 @@ public class Player : Entity
   private bool _immune = false;
   private bool inAir = false;
   private bool walking = false;
+  public bool attached = false;
   public bool attacking = false;
   [SerializeField] protected List<GameObject> hearts;
   [SerializeField] private float _knockback;
@@ -55,6 +56,7 @@ public class Player : Entity
       attacking = true;
       anim.SetBool("inAir", false);
       anim.SetBool("attacking", true);
+      anim.SetBool("walking", false);
       weapon.GetComponent<Weapon>().Attack(_attackDelay);
       StartCoroutine(Attacking());
     }
@@ -80,7 +82,7 @@ public class Player : Entity
       rb.velocity = new Vector2(rb.velocity.x + (inputVector.x * acceleration * Time.deltaTime), rb.velocity.y);
       // Clamp velocity in x axis only
       Vector2 horizontalVelocity = new Vector2(rb.velocity.x, 0);
-      horizontalVelocity = Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed);  // limits x-axis speed
+      horizontalVelocity = attached ? Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed / 2) : Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed);  // limits x-axis speed
       rb.velocity = new Vector2(horizontalVelocity.x, rb.velocity.y);               // now y can still fall as fast as possible
 
     }
@@ -105,13 +107,13 @@ public class Player : Entity
       anim.SetBool("walking", true);
 
     }
-    if (rb.velocity.x == 0)
+    if (inputVector == Vector2.zero)
     {
       walking = false;
       anim.SetBool("walking", false);
     }
 
-    if (Mathf.Abs(rb.velocity.x) > 0 && !stunned && !attacking)
+    if (Mathf.Abs(rb.velocity.x) > 0 && !stunned && !attacking && inputVector != Vector2.zero)
     {
       transform.eulerAngles = rb.velocity.x > 0 ? Vector2.zero : new Vector2(0, 180);
       transform.GetChild(0).transform.eulerAngles = Vector2.zero;
@@ -129,12 +131,10 @@ public class Player : Entity
     }
   }
 
-  public void TakeDamage(Enemy enemy, bool stun)
+  public void TakeDamage(Enemy enemy)
   {
     hp -= enemy.GetDamage();
-    if(stun) {
-      StartCoroutine(Stunned());
-    }
+    StartCoroutine(Stunned());
   }
 
   public void TakeDamage(Bullet bullet)
@@ -174,12 +174,12 @@ public class Player : Entity
   {
     if (!_immune)
     {
-      if (other.tag == "MeleeEnemy")
-      {
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        TakeDamage(enemy, true);
-      }
-      else if (other.tag == "Projectile")
+      // if (other.tag == "ScaryThimble")
+      // {
+      //   Enemy enemy = other.gameObject.GetComponent<Enemy>();
+      //   TakeDamage(enemy);
+      // }
+      if (other.tag == "Projectile")
       {
         Bullet bullet = other.gameObject.GetComponent<Bullet>();
         TakeDamage(bullet);
@@ -188,7 +188,7 @@ public class Player : Entity
   }
 
   private void OnCollisionEnter2D(Collision2D col) {
-    if (col.gameObject.tag == "ScaryThimble") {
+    if (col.gameObject.tag == "MeleeEnemy") {
       Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
   }

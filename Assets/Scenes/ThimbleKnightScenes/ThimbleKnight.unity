@@ -579,7 +579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075433969880907326, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5075433969880907326, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: m_SleepingMode
@@ -603,11 +603,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: speed
-      value: 15
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 37600959}
+    - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: maxSpeed
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: velPower
@@ -615,7 +619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: jumpForce
-      value: 12
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: _knockback
@@ -627,7 +631,7 @@ PrefabInstance:
       objectReference: {fileID: 7400000, guid: d52b83fd88b504319856222e9d331e24, type: 2}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: acceleration
-      value: 9
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: decceleration
@@ -1156,6 +1160,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &116310381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3900095079076803079, guid: 7843295bf0580fe4c8c3b1d21e2354b1, type: 3}
+  m_PrefabInstance: {fileID: 1383273391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &152462771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,6 +1956,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &318706181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3900095079076803079, guid: 7843295bf0580fe4c8c3b1d21e2354b1, type: 3}
+  m_PrefabInstance: {fileID: 1794797557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &325380807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,6 +3128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursed Thimble 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7649532338274725181, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
+      propertyPath: m_TagString
+      value: MeleeEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725317, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: player
       value: 
@@ -3274,6 +3292,10 @@ PrefabInstance:
     - target: {fileID: 7649532338274725181, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649532338274725181, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
+      propertyPath: m_TagString
+      value: MeleeEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725317, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: player
@@ -3609,7 +3631,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Positions:
   - {x: -10.601093, y: 1.8042685, z: -9.933333}
   - {x: -10.601093, y: -1.6943545, z: -9.933333}
@@ -5857,6 +5879,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3900095079076803080, guid: 7843295bf0580fe4c8c3b1d21e2354b1, type: 3}
   m_PrefabInstance: {fileID: 1794797557}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1245174263
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318706181}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46ae199d1e700294fb1118ae41d6749e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &1250913104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6560,7 +6602,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Positions:
   - {x: -14.271859, y: -0.63842964, z: -6.2611647}
   - {x: 14.228162, y: -0.5985177, z: -6.2702913}
@@ -8202,6 +8244,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3900095079076803080, guid: 7843295bf0580fe4c8c3b1d21e2354b1, type: 3}
   m_PrefabInstance: {fileID: 1383273391}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1726529005
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116310381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46ae199d1e700294fb1118ae41d6749e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1753033113
 GameObject:
   m_ObjectHideFlags: 0
@@ -8337,6 +8399,10 @@ PrefabInstance:
     - target: {fileID: 7649532338274725181, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_Name
       value: Cursed Thimble 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649532338274725181, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
+      propertyPath: m_TagString
+      value: MeleeEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725317, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: player
@@ -8976,7 +9042,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Positions:
   - {x: -14.271859, y: -0.63842964, z: -6.2611647}
   - {x: 14.228162, y: -0.5985177, z: -6.2702913}
@@ -9326,7 +9392,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Positions:
   - {x: -10.601093, y: 1.8042685, z: -9.933333}
   - {x: -10.601093, y: -1.6943545, z: -9.933333}

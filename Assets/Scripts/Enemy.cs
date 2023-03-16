@@ -54,10 +54,8 @@ public abstract class Enemy : Entity
 
     IEnumerator Stunned(Weapon weapon)
     {
-        spriteRenderer.enabled = false;
+        yield return new WaitForSeconds(0.25f);
         rb.AddForce(new Vector2(weapon.GetKnockback(), 0) * (-direction), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.1f);
-        spriteRenderer.enabled = true;
         yield return new WaitForSeconds(1);
         moving = true;
         stunned = false;
@@ -77,7 +75,7 @@ public abstract class Enemy : Entity
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "RangedEnemy" || col.gameObject.tag == "MeleeEnemy")
+        if (col.gameObject.tag == "RangedEnemy" || col.gameObject.tag == "MeleeEnemy" || col.gameObject.tag == "Projectile")
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }

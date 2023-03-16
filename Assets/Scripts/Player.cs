@@ -46,7 +46,7 @@ public class Player : Entity
     _playerInputActions.Player.Jump.performed += Jump;
     _playerInputActions.Player.Attack.performed += Attack;
 
-    _attackDelay = attackAnim.length;
+    _attackDelay = attackAnim.length * 0.66f;
   }
 
   public void Attack(InputAction.CallbackContext context)
@@ -64,7 +64,7 @@ public class Player : Entity
 
   IEnumerator Attacking()
   {
-    yield return new WaitForSeconds(0.5f);
+    yield return new WaitForSeconds(_attackDelay);
     anim.SetBool("attacking", false);
     attacking = false;
   }
@@ -174,11 +174,6 @@ public class Player : Entity
   {
     if (!_immune)
     {
-      // if (other.tag == "ScaryThimble")
-      // {
-      //   Enemy enemy = other.gameObject.GetComponent<Enemy>();
-      //   TakeDamage(enemy);
-      // }
       if (other.tag == "Projectile")
       {
         Bullet bullet = other.gameObject.GetComponent<Bullet>();

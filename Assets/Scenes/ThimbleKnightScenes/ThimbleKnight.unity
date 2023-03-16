@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 5067675}
   - component: {fileID: 5067674}
   - component: {fileID: 5067673}
+  - component: {fileID: 5067676}
   m_Layer: 3
   m_Name: LeftDrawer
   m_TagString: Untagged
@@ -234,6 +235,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &5067676
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067672}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &17903877
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,19 +521,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 271498593521884171, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: launchSpeed
-      value: 1.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 271498593521884171, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: maxDistance
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 271498593521884171, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: launchToPoint
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 271498593521884171, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+      propertyPath: targetDistance
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 271498593521884171, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+      propertyPath: m_distanceJoint2D
+      value: 
+      objectReference: {fileID: 730464651}
+    - target: {fileID: 271498593521884171, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: autoConfigureDistance
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1451215780278940245, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: m_RootOrder
@@ -566,8 +596,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6200000, guid: b648456beb3a80647bc53f523e7938ef, type: 2}
     - target: {fileID: 4426056814304551307, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426056814304551307, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: m_Distance
       value: 4.726489
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075433969880907326, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5173497119669751213, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: m_Size.x
@@ -589,6 +627,10 @@ PrefabInstance:
       propertyPath: attackAnim
       value: 
       objectReference: {fileID: 7400000, guid: d52b83fd88b504319856222e9d331e24, type: 2}
+    - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+      propertyPath: acceleration
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5679609220490389034, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
       propertyPath: hearts.Array.size
       value: 3
@@ -623,6 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3659099015504730941, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
+    - {fileID: 4426056814304551307, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
 --- !u!1 &37600959 stripped
 GameObject:
@@ -1001,7 +1044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &101055308
 Transform:
   m_ObjectHideFlags: 0
@@ -3614,6 +3657,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7967685440205903142, guid: 5f93e99b4ac44ac438fa4b431903f025, type: 3}
   m_PrefabInstance: {fileID: 37600958}
   m_PrefabAsset: {fileID: 0}
+--- !u!232 &730464651
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730464650}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 4.726489
+  m_MaxDistanceOnly: 1
 --- !u!1 &761118978
 GameObject:
   m_ObjectHideFlags: 0

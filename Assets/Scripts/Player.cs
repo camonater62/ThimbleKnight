@@ -9,7 +9,7 @@ public class Player : Entity
   private PlayerInputActions _playerInputActions;
   // private Animator _anim;
   private Collision _col;
-  private SpringJoint2D _SpringJoint;
+  private DistanceJoint2D _DistanceJoint;
   private bool _immune = false;
   private bool inAir = false;
   private bool walking = false;
@@ -38,7 +38,7 @@ public class Player : Entity
     }
     _col = GetComponent<Collision>();
     spriteRenderer = GetComponent<SpriteRenderer>();
-    _SpringJoint = GetComponent<SpringJoint2D>();
+    _DistanceJoint = GetComponent<DistanceJoint2D>();
 
     _playerInputActions = new PlayerInputActions();
     _playerInputActions.Player.Enable();
@@ -68,8 +68,7 @@ public class Player : Entity
   }
 
   // Update is called once per frame
-  void Update()
-  {
+  void Update() {
     Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2>();
 
     bool canLeft = rb.velocity.x > -maxSpeed || inputVector.x > 0;
@@ -84,7 +83,7 @@ public class Player : Entity
       rb.velocity = new Vector2(horizontalVelocity.x, rb.velocity.y);               // now y can still fall as fast as possible
 
     }
-    if (inputVector.x == 0 && !stunned)
+    if (inputVector.x == 0 && !stunned && _col.onGround)
     {
       rb.velocity = new Vector2(rb.velocity.x * drag * Time.deltaTime, rb.velocity.y);
     }

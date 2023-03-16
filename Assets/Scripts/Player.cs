@@ -13,18 +13,14 @@ public class Player : Entity
   private bool _immune = false;
   private bool inAir = false;
   private bool walking = false;
-  public bool attached = false;
-  public bool attacking = false;
-  [SerializeField] protected List<GameObject> hearts;
   [SerializeField] private float _knockback;
   [SerializeField] protected float jumpForce = 5f;
   [SerializeField] protected float acceleration = 10f;
-  [SerializeField] protected float decceleration = 10f;
-  [SerializeField] protected float velPower = 0.7f;
-  [SerializeField] protected float frictionAmount = 0.01f;
-  [SerializeField] protected float fallGravityMultiplier = 1.9f;
-  // [SerializeField] protected float drag = 0.01f;
-  // [SerializeField] protected float maxRunSpeed = 10;
+  [SerializeField] protected float drag = 0.01f;
+  [SerializeField] protected float maxRunSpeed = 10;
+  [SerializeField] protected List<GameObject> hearts;
+  public bool attached = false;
+  public bool attacking = false;
   [Header("Items:")]
   [SerializeField] protected GameObject weapon;
   [SerializeField] private float _attackDelay = 0.5f;
@@ -83,28 +79,16 @@ public class Player : Entity
 
     if ((canLeft || canRight) && !stunned)
     {
-      float targetSpeed = inputVector.x * speed;
-
-      float speedDif = targetSpeed - rb.velocity.x;
-
-      float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
-
-      float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
-      rb.AddForce(movement * Vector2.right);
-      // rb.velocity = new Vector2(rb.velocity.x + (inputVector.x * acceleration * Time.deltaTime), rb.velocity.y);
-      // // Clamp velocity in x axis only
-      // Vector2 horizontalVelocity = new Vector2(rb.velocity.x, 0);
-      // horizontalVelocity = attached ? Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed / 2) : Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed);  // limits x-axis speed
-      // rb.velocity = new Vector2(horizontalVelocity.x, rb.velocity.y);               // now y can still fall as fast as possible
-      float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
-
-      amount *= Mathf.Sign(rb.velocity.x);
-      rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+      rb.velocity = new Vector2(rb.velocity.x + (inputVector.x * acceleration * Time.deltaTime), rb.velocity.y);
+      // Clamp velocity in x axis only
+      Vector2 horizontalVelocity = new Vector2(rb.velocity.x, 0);
+      horizontalVelocity = attached ? Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed / 2) : Vector2.ClampMagnitude(horizontalVelocity, maxRunSpeed);  // limits x-axis speed
+      rb.velocity = new Vector2(horizontalVelocity.x, rb.velocity.y);               // now y can still fall as fast as possible
     }
-    // if (inputVector.x == 0 && !stunned)
-    // {
-    //   rb.velocity = new Vector2(rb.velocity.x * drag * Time.deltaTime, rb.velocity.y);
-    // }
+    if (inputVector.x == 0 && !stunned)
+    {
+      rb.velocity = new Vector2(rb.velocity.x * drag * Time.deltaTime, rb.velocity.y);
+    }
 
     if (_col.onGround && !attacking)
     {

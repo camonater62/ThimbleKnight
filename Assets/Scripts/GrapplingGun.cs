@@ -97,10 +97,10 @@ public class GrapplingGun : MonoBehaviour
             var gravVec = new Vector2(xcomp, 0);
             if (angle <= 0.95)
                 pRB.AddForce(gravVec, ForceMode2D.Force);
-            Debug.Log("Vec: " + jointVec);
-            Debug.Log("Angle: " + angle);
-            Debug.Log("Xcomp: " + xcomp);
-            Debug.Log("---");
+            // Debug.Log("Vec: " + jointVec);
+            // Debug.Log("Angle: " + angle);
+            // Debug.Log("Xcomp: " + xcomp);
+            // Debug.Log("---");
 
             if (launchToPoint && grappleRope.isGrappling)
             {

@@ -25,5 +25,6 @@ public class Bullet : MonoBehaviour
     {
       Destroy(gameObject);
     }
+    Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
   }
 }

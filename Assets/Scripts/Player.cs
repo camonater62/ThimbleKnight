@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
-  private PlayerInputActions _playerInputActions;
+  private PlayerInputActions _playerInputActions = null;
   // private Animator _anim;
   private Collision _col;
   private DistanceJoint2D _DistanceJoint;
@@ -124,6 +125,7 @@ public class Player : Entity
   {
     if (_col.onGround)
     {
+      Debug.Log(rb);
       rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);        // add jump to current jump momentum
       anim.SetTrigger("Jump");
       // anim.SetBool("inAir", true);
@@ -150,7 +152,7 @@ public class Player : Entity
     _immune = true;
     anim.SetBool("stunned", true);
     rb.velocity = new Vector2(direction * _knockback, 0);
-    yield return new WaitForSeconds(1f);
+    yield return new WaitForSeconds(0.5f);
     anim.SetBool("stunned", false);
     if (hp % 2 == 0)
     {
@@ -159,8 +161,7 @@ public class Player : Entity
     }
     if (hp <= 0)
     {
-      Debug.Log("You lose");
-      gameObject.SetActive(false);
+      SceneManager.LoadSceneAsync("LoseScene");
     }
     heart.GetComponent<Animator>().ResetTrigger("loseHealth");
     rb.velocity = Vector2.zero;
@@ -178,6 +179,9 @@ public class Player : Entity
         Bullet bullet = other.gameObject.GetComponent<Bullet>();
         TakeDamage(bullet);
       }
+    }
+    if(other.tag == "EndGame") {
+      SceneManager.LoadSceneAsync("WinScene");
     }
   }
 

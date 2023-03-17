@@ -12,9 +12,9 @@ public abstract class Entity : MonoBehaviour {
    [SerializeField] protected int direction = 0;
 
     protected bool stunned = false;
-    protected Rigidbody2D rb;
-    protected Animator anim;
-    protected SpriteRenderer spriteRenderer;
+    protected Rigidbody2D rb = null;
+    protected Animator anim = null;
+    protected SpriteRenderer spriteRenderer = null;
 
     public virtual float GetMaxSpd() { return maxSpeed; }
     public virtual float GetSpeed() { return speed; }

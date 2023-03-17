@@ -12,6 +12,7 @@ TagManager:
   - MeleeEnemy
   - Enemy
   - ScaryThimble
+  - EndGame
   layers:
   - Default
   - TransparentFX

@@ -19,13 +19,14 @@ public class ScaryThimble : Enemy
         }
         if (_attached)
         {
+            Debug.Log("Attached");
             transform.position = player.transform.position + new Vector3(0, 2, 0);
         }
     }
     public override void TakeDamage(Weapon weapon)
     {
-        base.TakeDamage(weapon);
         _attached = false;
+        base.TakeDamage(weapon);
         player.GetComponent<Player>().attached = false;
     }
     public override void Attack()

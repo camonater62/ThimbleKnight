@@ -16,7 +16,6 @@ public abstract class Enemy : Entity
     protected bool attacked = false;
 
     public float GetDistance() { return Vector3.Distance(transform.position, player.transform.position); }
-    public float GetDirection() { return direction; }
 
 
 
@@ -55,12 +54,12 @@ public abstract class Enemy : Entity
     IEnumerator Stunned(Weapon weapon)
     {
         yield return new WaitForSeconds(0.25f);
-        rb.AddForce(new Vector2(weapon.GetKnockback(), 0) * (-direction), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(weapon.GetKnockback(), 0) * player.GetComponent<Player>().GetDirection(), ForceMode2D.Impulse);
         yield return new WaitForSeconds(1);
         moving = true;
         stunned = false;
         rb.velocity = Vector2.zero;
-      //   Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.gameObject.GetComponent<Collider2D>(), false);
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), player.gameObject.GetComponent<Collider2D>(), false);
     }
 
     protected IEnumerator Attacked()

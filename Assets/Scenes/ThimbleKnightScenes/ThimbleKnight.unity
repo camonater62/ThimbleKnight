@@ -2251,7 +2251,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 5772ba93bf98dd388a643688a408e0d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3030,11 +3030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 170.60817
+      value: 149
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.536798
+      value: 12.7
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3067,6 +3067,10 @@ PrefabInstance:
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649532338274725319, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
@@ -6984,7 +6988,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: e284c8a255366814e9c5a516b1b93af5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7572,11 +7576,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 181.88011
+      value: 161.5
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.966799
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7609,6 +7613,10 @@ PrefabInstance:
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649532338274725319, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}

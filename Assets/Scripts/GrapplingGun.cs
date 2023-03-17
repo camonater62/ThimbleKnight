@@ -95,7 +95,8 @@ public class GrapplingGun : MonoBehaviour
             }
 
             var gravVec = new Vector2(xcomp, 0);
-            if (angle <= 0.95)
+            var pCol = gunHolder.GetComponent<Collision>();
+            if (angle <= 0.95 && !pCol.onGround)
                 pRB.AddForce(gravVec, ForceMode2D.Force);
             // Debug.Log("Vec: " + jointVec);
             // Debug.Log("Angle: " + angle);

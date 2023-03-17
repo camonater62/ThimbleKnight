@@ -19,7 +19,6 @@ public class ScaryThimble : Enemy
         }
         if (_attached)
         {
-            Debug.Log("Attached");
             transform.position = player.transform.position + new Vector3(0, 2, 0);
         }
     }
@@ -31,7 +30,6 @@ public class ScaryThimble : Enemy
     }
     public override void Attack()
     {
-        Debug.Log(_attached);
         if (!_attached)
         {
             _attached = true;
@@ -41,7 +39,6 @@ public class ScaryThimble : Enemy
             Player p = player.GetComponent<Player>();
             p.TakeDamage(this);
             p.attached = true;
-            // StartCoroutine(Attacked());
         }
     }
 }

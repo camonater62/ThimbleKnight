@@ -50,12 +50,14 @@ public class GrapplingGun : MonoBehaviour
 
     private float _previousGravity = 1;
     private bool _emptyGrapple = false;
+    private AudioSource _audio;
 
     private void Start()
     {
         grappleRope.enabled = false;
         m_distanceJoint2D.enabled = false;
         _previousGravity = m_rigidbody.gravityScale;
+        _audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -63,6 +65,7 @@ public class GrapplingGun : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             SetGrapplePoint();
+            _audio.Play();
         }
         else if (Input.GetKey(KeyCode.Mouse1) && !(_emptyGrapple && grappleRope.waveSize <= 0.5))
         {

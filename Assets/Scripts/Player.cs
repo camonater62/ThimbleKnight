@@ -11,6 +11,7 @@ public class Player : Entity
   // private Animator _anim;
   private Collision _col;
   private DistanceJoint2D _DistanceJoint;
+  private AudioSource[] _audio;
   private bool _immune = false;
   private bool inAir = false;
   private bool walking = false;
@@ -48,6 +49,8 @@ public class Player : Entity
     _playerInputActions.Player.Attack.performed += Attack;
 
     _attackDelay = attackAnim.length * 0.66f;
+
+    _audio = GetComponents<AudioSource>();
   }
 
   public void Attack(InputAction.CallbackContext context)
@@ -55,11 +58,13 @@ public class Player : Entity
     if (!stunned && !attacking)
     {
       attacking = true;
+      //cancel any playing animations
       anim.SetBool("inAir", false);
       anim.SetBool("attacking", true);
       anim.SetBool("walking", false);
       weapon.GetComponent<Weapon>().Attack(_attackDelay);
       StartCoroutine(Attacking());
+      _audio[1].Play();
     }
   }
 
@@ -146,14 +151,17 @@ public class Player : Entity
 
   IEnumerator Stunned()
   {
+    //edit the last heart in the list
     GameObject heart = hearts[hearts.Count - 1];
     heart.GetComponent<Animator>().SetTrigger("loseHealth");
     stunned = true;
     _immune = true;
     anim.SetBool("stunned", true);
-    rb.velocity = new Vector2(direction * _knockback, 0);
+    _audio[0].Play();
+    rb.velocity = new Vector2(direction * _knockback, 0); //take knockback
     yield return new WaitForSeconds(0.5f);
     anim.SetBool("stunned", false);
+    //heart represents 2 hp so delete the heart if health is % 2
     if (hp % 2 == 0)
     {
       hearts.Remove(heart);
@@ -161,7 +169,7 @@ public class Player : Entity
     }
     if (hp <= 0)
     {
-      SceneManager.LoadSceneAsync("LoseScene");
+      SceneManager.LoadSceneAsync("LoseScene");  //end game scenario
     }
     heart.GetComponent<Animator>().ResetTrigger("loseHealth");
     rb.velocity = Vector2.zero;
@@ -181,11 +189,12 @@ public class Player : Entity
       }
     }
     if(other.tag == "EndGame") {
-      SceneManager.LoadSceneAsync("WinScene");
+      SceneManager.LoadSceneAsync("WinScene");  //end game scenario
     }
   }
 
   private void OnCollisionEnter2D(Collision2D col) {
+    //makes sure that collision while curse thimble is attached doesn't move the player
     if (col.gameObject.tag == "MeleeEnemy") {
       Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }

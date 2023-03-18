@@ -2958,10 +2958,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursed Thimble 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7649532338274725317, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 730464650}
     - target: {fileID: 7649532338274725318, guid: 5ec552e924f6cee4ca44acb43ecf82e1, type: 3}
       propertyPath: m_RootOrder
       value: 7

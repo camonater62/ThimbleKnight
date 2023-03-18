@@ -44,7 +44,10 @@ public class ParallaxManager : MonoBehaviour
 
             Vector3 position = _OriginalPositions[i] - new Vector3(xcomp, ycomp, 0);
 
-            float width = _Layers[i].GetComponent<SpriteRenderer>().bounds.size.x;
+            SpriteRenderer sRen;
+            if (!_Layers[i].TryGetComponent<SpriteRenderer>(out sRen))
+                sRen = _Layers[i].GetComponentInChildren<SpriteRenderer>();
+            float width = sRen.bounds.size.x;
             Vector3 widthVector = new(width, 0, 0);
             float minx = _OriginalPositions[i].x - width;
             float maxx = _OriginalPositions[i].x + width;

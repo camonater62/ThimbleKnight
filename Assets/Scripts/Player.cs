@@ -12,6 +12,7 @@ public class Player : Entity
   private Collision _col;
   private DistanceJoint2D _DistanceJoint;
   private AudioSource[] _audio;
+  private GameObject _enemies;
   private bool _immune = false;
   private bool inAir = false;
   private bool walking = false;
@@ -47,12 +48,24 @@ public class Player : Entity
     _playerInputActions.Player.Enable();
     _playerInputActions.Player.Jump.performed += Jump;
     _playerInputActions.Player.Attack.performed += Attack;
+    _playerInputActions.Player.ToggleEnemies.performed += ToggleEnemies;
+    _playerInputActions.Player.Exit.performed += Exit;
 
     _attackDelay = attackAnim.length * 0.66f;
 
     _audio = GetComponents<AudioSource>();
-  }
 
+    _enemies = GameObject.Find("Enemies");
+  }
+  
+  public void Exit(InputAction.CallbackContext context) {
+    Application.Quit();
+  }
+  public void ToggleEnemies(InputAction.CallbackContext context) {
+    if(_enemies != null) {
+      _enemies.SetActive(!_enemies.activeInHierarchy);
+    }
+  }
   public void Attack(InputAction.CallbackContext context)
   {
     if (!stunned && !attacking)

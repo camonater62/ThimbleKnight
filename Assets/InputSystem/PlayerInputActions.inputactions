@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "WallGrab",
+                    "name": "ToggleEnemies",
                     "type": "Button",
-                    "id": "f5af4816-968a-4328-8392-d1a0ed66f12e",
+                    "id": "c80c3d19-d58b-4b73-83e2-0212314eadb6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "9ef5ab95-2e44-4fe1-aa2c-95b23bc990e0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -100,12 +109,23 @@
                 },
                 {
                     "name": "",
-                    "id": "01c6f4f6-7825-459a-9857-a568106c7dde",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "0ff6a04a-2929-4aa3-b597-4f7ee3544821",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WallGrab",
+                    "action": "ToggleEnemies",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16a495fe-2639-4cc1-929c-6a4aa69bc78e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

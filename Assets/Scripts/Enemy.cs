@@ -53,8 +53,10 @@ public abstract class Enemy : Entity
 
     IEnumerator Stunned(Weapon weapon)
     {
+        anim.SetBool("Damaged", true);
         yield return new WaitForSeconds(0.25f);
         rb.AddForce(new Vector2(weapon.GetKnockback(), 0) * player.GetComponent<Player>().GetDirection(), ForceMode2D.Impulse);
+        anim.SetBool("Damaged", false);
         yield return new WaitForSeconds(1);
         moving = true;
         stunned = false;

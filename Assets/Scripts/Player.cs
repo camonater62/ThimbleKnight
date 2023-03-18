@@ -15,6 +15,7 @@ public class Player : Entity
   private bool _immune = false;
   private bool inAir = false;
   private bool walking = false;
+  private GameObject _enemies;
   [SerializeField] private float _knockback;
   [SerializeField] protected float jumpForce = 5f;
   [SerializeField] protected float acceleration = 10f;
@@ -47,12 +48,22 @@ public class Player : Entity
     _playerInputActions.Player.Enable();
     _playerInputActions.Player.Jump.performed += Jump;
     _playerInputActions.Player.Attack.performed += Attack;
+    _playerInputActions.Player.ToggleEnemies.performed += ToggleEnemies;
+    _playerInputActions.Player.Exit.performed += Exit;
 
     _attackDelay = attackAnim.length * 0.66f;
 
     _audio = GetComponents<AudioSource>();
+    _enemies = GameObject.Find("Enemies");
   }
 
+  public void ToggleEnemies(InputAction.CallbackContext context) {
+    _enemies.SetActive(!_enemies.activeInHierarchy);
+  }
+
+  public void Exit(InputAction.CallbackContext context) {
+    Application.Quit();
+  }
   public void Attack(InputAction.CallbackContext context)
   {
     if (!stunned && !attacking)
@@ -130,8 +141,9 @@ public class Player : Entity
   {
     if (_col.onGround)
     {
-      Debug.Log(rb);
-      rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);        // add jump to current jump momentum
+      if(rb != null) {
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForce);        // add jump to current jump momentum
+      }
       anim.SetTrigger("Jump");
       // anim.SetBool("inAir", true);
     }

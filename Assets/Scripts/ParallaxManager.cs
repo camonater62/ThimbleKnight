@@ -26,17 +26,16 @@ public class ParallaxManager : MonoBehaviour
         
         for (int i = 0; i < _Layers.Count; i++) {
 
-            
-
-
             float zpos = i - _CenterElement;
             if (_ReverseOrder) {
                 zpos = _CenterElement - i;
             }
-            if (zpos < 0) {
+            if (i == _Layers.Count - 1) {
+                zpos = 1 / zpos;
+            } else if (zpos < 0) {
                 zpos = 1 / Mathf.Abs(zpos - 1);
             }
-            float factor = zpos * _ParallaxFactor;
+            float factor = zpos * _ParallaxFactor;// / (_Layers[i].transform.localScale.x*_Layers[i].transform.localScale.x);
             
             float xcomp = player_pos.x * factor;
             float ycomp = player_pos.y * factor * _YMultiplier;

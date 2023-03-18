@@ -181,7 +181,7 @@ public class Player : Entity
     }
     if (hp <= 0)
     {
-      SceneManager.LoadSceneAsync("LoseScene");  //end game scenario
+      SceneManager.LoadSceneAsync("LoseScene", LoadSceneMode.Single);  //end game scenario
     }
     heart.GetComponent<Animator>().ResetTrigger("loseHealth");
     rb.velocity = Vector2.zero;
@@ -201,7 +201,7 @@ public class Player : Entity
       }
     }
     if(other.tag == "EndGame") {
-      SceneManager.LoadSceneAsync("WinScene");  //end game scenario
+      SceneManager.LoadSceneAsync("WinScene", LoadSceneMode.Single);  //end game scenario
     }
   }
 
@@ -210,6 +210,10 @@ public class Player : Entity
     if (col.gameObject.tag == "MeleeEnemy") {
       Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
+  }
+
+  private void OnDisable() {
+    _playerInputActions.Player.Disable();
   }
 
 }

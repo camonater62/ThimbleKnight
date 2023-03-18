@@ -12,6 +12,8 @@ public class ScaryThimble : Enemy
         {
             moving = true;
             anim.SetBool("Moving", true);
+        } else {
+            anim.SetBool("Moving", false);
         }
         if (moving)
         {
